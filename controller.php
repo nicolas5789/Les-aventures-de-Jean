@@ -1,6 +1,6 @@
 <?php
 
-require("model.php");
+require("model.php"); //appel de model
 
 function listPosts()
 {
@@ -16,3 +16,11 @@ function post()
 	
 	require("postView.php");
 }
+
+//essayer de faire une fonction pour gestion accès
+/*
+function access()
+{
+	//definir une fonction dans model
+}
+*/

@@ -1,22 +1,4 @@
 <?php
-/* 
-ESSAI MVC ECHEC
-function dbconnect() 
-{ 
-	try
-	{
-		$bdd = new PDO("mysql:host=localhost;dbname=blog_jean;charset=utf8", "root", "root");
-	}
-	//affichage si erreur
-	catch(Exception $e)
-	{
-		die("Erreur : " . $e->getMessages());
-	}
-}
-
-$bdd = dbconnect();  
-*/
-
 //connexion à la bdd CREER DIRECTEMENT EN FONCTION
 try
 {

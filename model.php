@@ -1,4 +1,20 @@
 <?php
+
+//vérification mdp du pseudo
+function access()
+{
+	$bdd = bddConnect();
+	//$pseudo = $_POST["pseudo"];
+	//$pass = $_POST["pass"];
+	$req_mdp = $bdd->query("SELECT pass AS passControl FROM membres WHERE pseudo = '$pseudo'"); //recupère le mdp du profil
+	$mdp = $req_mdp->fetch();
+
+	return $mdp;
+}
+
+
+
+
 //obtention des billets
 function getPosts() 
 { 
@@ -7,7 +23,7 @@ function getPosts()
 
 	return $posts;
 }
-
+//obtention d'un billet selon son id
 function getPost($postId)
 {
 
@@ -18,7 +34,7 @@ function getPost($postId)
 
 	return $post;
 }
-
+//obtention des commentaires
 function getComments($postId)
 {
 	$bdd = bddConnect();
@@ -27,7 +43,7 @@ function getComments($postId)
 
 	return $comments;
 }
-
+//connexion à la bdd
 function bddConnect()
 {
 	try

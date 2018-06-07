@@ -12,5 +12,6 @@ if(isset($_GET["action"])) // si dans l'url index une action est présente alors
 	}
 } else
 {
-	listPosts(); // si accès direct à index sans url spécial affichage de tous les posts
+	check_access(); // si accès direct à index sans url spécial affichage de tous les posts
+	//listPosts(); //pour essai sans gestion d'accès
 }

@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8"/>
+	<link rel="stylesheet" type="text/css" href="style.css">
 	<title>Blog de Jean</title>
 </head>
 
@@ -22,11 +23,12 @@
 				</p>
 			</form>
 		</div>
+		<div id="renvoi_inscription">
+			<a id="bouton inscription" href="inscription.php">Pas encore inscrit</a>
+		</div>
 	</div>
 
-	<div id="renvoi_inscription">
-		<a id="bouton inscription" href="inscription.php">Pas encore inscrit</a>
-	</div>
+	
 	
 </body>
 </html>

@@ -23,8 +23,7 @@ $result_email = count($comptage_email); // affiche le nb de correspondance
 
 $pass = $_POST["pass"];
 $pass_check = $_POST["pass_check"];
-//$pass_hash = password_hash($pass, PASSWORD_DEFAULT); 
-//$pass_check_hash = password_hash($pass_check, PASSWORD_DEFAULT); A CORRIGER : VOIR POUR HASH PASSWORD
+// A CORRIGER : VOIR POUR HASH PASSWORD
 
 $req_addMembre = $bdd->prepare("INSERT INTO membres (pseudo, pass, email) VALUES (?, ?, ?)");//prépa req ajout membre
 

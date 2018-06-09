@@ -3,16 +3,20 @@
 
 require("controller/controller.php"); //appel du controleur
 
-if(isset($_GET["action"])) // si dans l'url index une action est présente alors affichage d'un post précis avec ses com
+if (isset($_GET["action"])) // si dans l'url index une action est présente alors affichage d'un post précis avec ses com
 {
-	if(isset($_GET["id"]) && $_GET["id"] > 0) 
-	{
-		post(); //lance post() si un id est dans l'url
-	} else 
-	{
-		echo "Erreur: aucun identifiant de billet transmis";
+	if ($_GET["action"] == "listPosts") {
+		listPosts();
+	} elseif ($_GET["action"] == "post") {
+		if (isset($_GET["id"]) && $_GET["id"] >0) {
+			post();
+		} else {
+			echo "Erreur : aucun id de billet tranmis";
+		}
+	} elseif ($_GET["action"] == "addComment") {
+		newComments($_GET["id"], $_POST["auteur"], $_POST["contenu"]);
 	}
-} else
-{
-	listPosts(); //si aucune action dans url affichage du blog
+
+} else {
+	listPosts();
 }

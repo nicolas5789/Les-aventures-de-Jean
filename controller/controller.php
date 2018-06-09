@@ -19,3 +19,10 @@ function post()
 	
 	require("view/postView.php"); //affiche un post avec ses comments
 }
+
+function newComments($id_billet, $auteur, $contenu)
+{
+	$sendComment = setComment($id_billet, $auteur, $contenu);
+
+	header("Location: index.php?action=post&id=".$id_billet);
+}

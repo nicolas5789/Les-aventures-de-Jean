@@ -6,7 +6,16 @@
 	<title>Blog de Jean</title>
 </head>
 <body>
-	<h1>Blog de Jean</h1>
+	<h1>Espace administrateur</h1>
+
+	<div id="addPost">
+		<h3>Ajouter un billet</h3>
+		<form action="index.php?action=addPost" method="post">
+			<label for="auteur"> Auteur du billet </label> <input type="text" name="auteur" id="auteur" required />
+			<label for="contenu"> Contenu du billet </label><input type="text" name="contenu" id="contenu" required />
+			<button type="submit"> Créer </button>
+		</form>
+	</div>
 
 	<div id="affichages_billets">
 		<?php
@@ -32,8 +41,8 @@
 		?>
 	</div>
 
-	<div id="adminLink">
-		<a href="index.php?action=admin">Espace administrateur</a>
+	<div id="disconnect">
+		<a href="index.php">Déconnexion</a>
 	</div>
 
 </body>

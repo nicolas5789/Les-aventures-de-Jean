@@ -19,3 +19,13 @@ function getPost($postId)
 
 	return $post;
 }
+
+//ajout d'un billet 
+function setPost($auteur, $contenu)
+{
+	$bdd = bddConnect();
+	$addPost = $bdd->prepare("INSERT INTO billets(auteur, date_creation, contenu) VALUES(?, NOW(), ?)");
+	$sendPost = $addPost->execute(array($auteur, $contenu));
+
+	return $sendPost; 
+}

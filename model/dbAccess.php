@@ -1,5 +1,5 @@
 <?php
-
+//connexion à la bdd
 function bddConnect()
 {
 	try

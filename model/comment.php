@@ -9,7 +9,7 @@ function getComments($postId)
 
 	return $comments;
 }
-
+//ajout des commentaires
 function setComment($postId, $auteur, $contenu)
 {
 	$bdd = bddConnect();

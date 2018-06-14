@@ -20,9 +20,24 @@ function post()
 	require("view/postView.php"); //affiche un post avec ses comments
 }
 
+function newPost($auteur, $contenu)
+{
+	$sendPost = setPost($auteur, $contenu);
+
+	header("Location: index.php?action=admin");
+}
+
 function newComments($id_billet, $auteur, $contenu)
 {
 	$sendComment = setComment($id_billet, $auteur, $contenu);
 
 	header("Location: index.php?action=post&id=".$id_billet);
 }
+
+function admin()
+{
+	$posts = getPosts(); //permet d'obtenir les billets(posts)
+
+	require("view/admin.php");
+}
+

@@ -35,7 +35,7 @@
 				<p><?php echo htmlspecialchars($comment["auteur"]) ?></p>
 				<p> le <?php echo $comment["date_creation"] ?> </p>
 				<p><?php echo htmlspecialchars($comment["contenu"]) ?></p>
-				<a href="#">Signaler le commentaire</a>
+				<a href="index.php?action=signal&amp;id=<?= $comment["id"]?>">Signaler le commentaire</a> <!--VOIR POUR RESTER SUR LA MEME PAGE AU CLIC-->
 			</div>
 		<?php
 		}

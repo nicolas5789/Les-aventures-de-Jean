@@ -41,6 +41,36 @@
 		?>
 	</div>
 
+	<div id="signalements">
+		<h3>Signalements</h3>
+		<?php
+		while($reportedCom = $reportedComments->fetch())
+		{
+		?>
+		<div id="commentaires_signalés">
+			<p>
+				Le commentaire écrit par 
+				<?php echo htmlspecialchars($reportedCom["auteur"]); ?>
+				le 
+				<?php echo htmlspecialchars($reportedCom["date_creation"]); ?>
+				a été signalé
+				<?php echo htmlspecialchars($reportedCom["nb_signalement"]); ?>
+				fois.
+			 </p>
+			 <p>
+			 	Commentaire :
+			 	<?php echo htmlspecialchars($reportedCom["contenu"]); ?>
+			 </p>
+			
+		</div>
+		<?php
+		}
+		$reportedComments->closeCursor();
+		?>
+
+	</div>
+
+
 	<div id="disconnect">
 		<a href="index.php">Déconnexion</a>
 	</div>

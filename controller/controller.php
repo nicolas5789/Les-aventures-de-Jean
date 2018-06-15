@@ -38,6 +38,16 @@ function admin()
 {
 	$posts = getPosts(); //permet d'obtenir les billets(posts)
 
+	$reportedComments = getReportedCom(); //permet d'obtenir les com signalés
+
 	require("view/admin.php");
+}
+
+function newSignal()
+{
+	$signal = setSignal($_GET["id"]);
+
+	header("Location: index.php");
+
 }
 

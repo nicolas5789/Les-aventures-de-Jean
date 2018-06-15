@@ -9,10 +9,10 @@ if (isset($_GET["action"])) // si dans l'url index une action est présente alor
 		listPosts();
 		
 	} elseif ($_GET["action"] == "post") {
-		if (isset($_GET["id"]) && $_GET["id"] >0) {
+		if (isset($_GET["id"]) && $_GET["id"] > 0) {
 			post();
 		} else {
-			echo "Erreur : aucun id de billet tranmis";
+			echo "Erreur : aucun id de billet transmis";
 		}
 
 	} elseif ($_GET["action"] == "addComment") {
@@ -23,6 +23,13 @@ if (isset($_GET["action"])) // si dans l'url index une action est présente alor
 
 	} elseif ($_GET["action"] == "addPost"){
 		newPost($_POST["auteur"], $_POST["contenu"]);
+	
+	} elseif ($_GET["action"] == "signal"){
+		if(isset($_GET["id"])){
+			newSignal();
+		} else {
+			echo "Aucun id de billet transmis";
+		}
 	}
 
 } else {

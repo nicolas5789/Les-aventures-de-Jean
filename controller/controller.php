@@ -1,51 +1,44 @@
 <?php
 
 //appel des model
-require("model/dbAccess.php");
+//require("model/dbAccess.php");
 require("model/post.php");
 require("model/comment.php");
 
 function listPosts()
 {
-	$posts = getPosts(); //permet d'obtenir les billets(posts)
+	$postManager = new PostManager();
+
+	$posts = $postManager->getPosts(); //permet d'obtenir les billets(posts)
 
 	require("view/blog.php"); //lance la page affichant les billets
 }
 
-function post()
+function post() //affiche un post avec ses com
 {
-	$post = getPost($_GET["id"]); //obtient un post précis
-	$comments = getComments($_GET["id"]); // obtient les com d'un post selon son id
+	$postManager = new PostManager();
+	$commentManager = new CommentManager();
+
+	$post = $postManager->getPost($_GET["id"]); //obtient un post précis
+	$comments = $commentManager->getComments($_GET["id"]); // obtient les com d'un post selon son id
 	
 	require("view/postView.php"); //affiche un post avec ses comments
 }
 
-function newPost($auteur, $contenu)
-{
-	$sendPost = setPost($auteur, $contenu);
-
-	header("Location: index.php?action=admin");
-}
-
 function newComments($id_billet, $auteur, $contenu)
 {
-	$sendComment = setComment($id_billet, $auteur, $contenu);
+	$commentManager = new CommentManager();
+
+	$sendComment = $commentManager->setComment($id_billet, $auteur, $contenu);
 
 	header("Location: index.php?action=post&id=".$id_billet);
 }
 
-function admin()
-{
-	$posts = getPosts(); //permet d'obtenir les billets(posts)
-
-	$reportedComments = getReportedCom(); //permet d'obtenir les com signalés
-
-	require("view/admin.php");
-}
-
 function newSignal()
 {
-	$signal = setSignal($_GET["id"]);
+	$commentManager = new CommentManager();
+
+	$signal = $commentManager->setSignal($_GET["id"]);
 
 	header("Location: index.php");
 

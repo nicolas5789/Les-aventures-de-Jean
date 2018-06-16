@@ -1,7 +1,8 @@
 <?php
 //l'index fait office de routeur
 
-require("controller/controller.php"); //appel du controleur
+require("controller/controller.php"); //appel des controleur
+require("controller/adminController.php");
 
 if (isset($_GET["action"])) // si dans l'url index une action est présente alors affichage d'un post précis avec ses com
 {

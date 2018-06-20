@@ -19,8 +19,8 @@ if (isset($_GET["action"])) // si dans l'url index une action est présente alor
 	} elseif ($_GET["action"] == "addComment") {
 		newComments($_GET["id"], $_POST["auteur"], $_POST["contenu"]);
 
-	} elseif ($_GET["action"] == "admin") {
-		admin();
+	} elseif ($_GET["action"] == "admin") { //VOIR POUR SECURISER
+		admin(); 
 
 	} elseif ($_GET["action"] == "addPost"){
 		newPost($_POST["auteur"], $_POST["contenu"]);
@@ -31,6 +31,11 @@ if (isset($_GET["action"])) // si dans l'url index une action est présente alor
 		} else {
 			echo "Aucun id de billet transmis";
 		}
+	} elseif ($_GET["action"] == "formAccess") {
+		header("Location: view/connexion.php");
+
+	} elseif ($_GET["action"] == "checkId") {
+		access();
 	}
 
 } else {

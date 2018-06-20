@@ -33,7 +33,7 @@
 	</div>
 
 	<div id="adminLink">
-		<a href="index.php?action=admin">Espace administrateur</a>
+		<a href="index.php?action=formAccess">Espace administrateur</a>
 	</div>
 
 </body>

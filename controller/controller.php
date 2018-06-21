@@ -1,10 +1,9 @@
 <?php
 
 //appel des model
-//require("model/dbAccess.php");
 require("model/post.php");
 require("model/comment.php");
-//require("model/connexion.php");
+
 
 function listPosts()
 {

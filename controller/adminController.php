@@ -1,14 +1,29 @@
 <?php
 
 //plusieurs autres model déjà appelé dans controller.php
-
 require("model/connexion.php");
+
+function changePost() //envoi le billet modifié à la bdd
+{
+	$postManager = new PostManager();
+
+	$sendPost = $postManager->changePost($_POST["auteur"], $_POST["contenu"], $_GET["id"]);
+}
+
+function editPost() //obtient billet dans zone de modification
+{
+	$postManger = new PostManager();
+
+	$post = $postManger->getPost($_GET["id"]);
+
+	require("view/editPost.php"); 
+}
 
 function newPost($auteur, $contenu) //permet d'ajouter un billet
 {
 	$postManager = new PostManager();
 
-	$sendPost = $postManger->setPost($auteur, $contenu);
+	$sendPost = $postManager->setPost($auteur, $contenu);
 
 	header("Location: index.php?action=admin");
 }
@@ -35,7 +50,7 @@ function access()
 		header("Location: index.php?action=admin");
 	} else 
 	{
-		header("Location: index.php?action=formAccess");
+		header("Location: index.php?action=formAccess"); //VOIR COMMENT AJOUTER MESSAGE MDP INCORRECT
 	}
 
 }

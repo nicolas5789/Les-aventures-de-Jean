@@ -3,7 +3,7 @@
 class CheckId
 {
 	//vérification du mot de passe
-	public function controlAccess()
+	public function controlAccess() // FONCTION EN PRIVATE ? 
 	{
 		$pseudo = $_POST["pseudo"];
 		$pass = $_POST["pass"];
@@ -24,6 +24,7 @@ class CheckId
 		return $result;
 	}
 
+	//connexion à la bdd
 	private function bddConnect()
 	{
 		try

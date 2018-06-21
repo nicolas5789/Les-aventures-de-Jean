@@ -39,6 +39,7 @@ class CommentManager
 		return $getReported;
 	}
 
+	//connexion à la bdd
 	private function bddConnect()
 	{
 		try

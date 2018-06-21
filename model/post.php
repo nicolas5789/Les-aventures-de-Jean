@@ -11,6 +11,16 @@ class PostManager
 		return $posts;
 	}
 
+	public function changePost($auteur, $contenu, $postId)
+	{
+		
+		$bdd = $this->bddConnect();
+		$editPost = $bdd->prepare("UPDATE billets SET auteur = ?, contenu = ? WHERE id = ?");
+		$sendPost = $editPost->execute(array($auteur, $contenu, $postId));
+
+		return $sendPost;
+	}
+
 	//obtention d'un billet selon son id
 	public function getPost($postId)
 	{
@@ -33,6 +43,7 @@ class PostManager
 		return $sendPost; 
 	}
 
+	//connexion à la bdd
 	private function bddConnect()
 	{
 		try

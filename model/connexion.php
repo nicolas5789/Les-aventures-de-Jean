@@ -7,7 +7,7 @@ class CheckId
 	{
 		$pseudo = $_POST["pseudo"];
 		$pass = $_POST["pass"];
-	
+
 		$bdd = $this->bddConnect();
 		$req_password = $bdd->query("SELECT pass FROM membres WHERE pseudo='$pseudo'"); 
 		$passwordBdd = $req_password->fetch();
@@ -15,13 +15,13 @@ class CheckId
 		$passwordBddPseudo = $passwordBdd["pass"];
 
 		$result = "access denied";
-		if ($pass == $passwordBddPseudo)
+		if (password_verify($pass, $passwordBddPseudo)) 
 		{
 			$result = "access granted";
 		} else {
 			$result = "access denied";
 		}
-		return $result; 
+		return $result;
 	}
 
 	private function bddConnect()

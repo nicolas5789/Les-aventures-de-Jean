@@ -11,6 +11,7 @@ class PostManager
 		return $posts;
 	}
 
+	//modification d'un billet selon son id
 	public function changePost($auteur, $contenu, $postId)
 	{
 		
@@ -19,6 +20,17 @@ class PostManager
 		$sendPost = $editPost->execute(array($auteur, $contenu, $postId));
 
 		return $sendPost;
+	}
+
+	//suppression d'un billet selon son id
+	public function deletePost($postId)
+	{
+		$bdd = $this->bddConnect();
+		$req_deletePost = $bdd->prepare("DELETE FROM billets WHERE id= ?");
+		$req_deletePost->execute(array($postId));
+
+		return $req_deletePost;
+
 	}
 
 	//obtention d'un billet selon son id

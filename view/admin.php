@@ -33,6 +33,8 @@
 					<br/>
 					<a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Commentaires</a> <!--Si clic sur com: envoi du numéro de l'id du billet vers post.php --> 
 					<a href="index.php?action=editPost&amp;id=<?= $data['id'] ?>">Modifier le billet</a>
+
+					<a href="index.php?action=deletePost&amp;id=<?= $data['id'] ?>">Supprimer le billet</a>
 				</p>
 			</div>
 		</div>

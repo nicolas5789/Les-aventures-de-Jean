@@ -48,6 +48,12 @@ if (isset($_GET["action"])) // si dans l'url index une action est présente alor
 		} else {
 			echo "Aucun Id de billet transmis";
 		}
+	} elseif ($_GET["action"] == "deletePost") {
+		if (isset($_GET["id"]) && $_GET["id"] > 0) {
+			deletePost();
+		} else {
+			echo "Aucun Id de billet transmis";
+		}
 	}
 
 } else {

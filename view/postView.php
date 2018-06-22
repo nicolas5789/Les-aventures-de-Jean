@@ -42,13 +42,5 @@
 		$comments->closeCursor();
 		?>
 	</div>
-
-	
-
-
-
-
-
-
 </body>
 </html>

@@ -1,6 +1,7 @@
 <?php
+require_once("model/manager.php");
 
-class CommentManager
+class CommentManager extends Manager
 {
 	//suppression d'un commentaire selon son id
 	public function deleteCom($commentId)
@@ -11,7 +12,6 @@ class CommentManager
 
 		return $req_deleteCom;
 	}
-
 
 	//obtention des commentaires
 	public function getComments($postId)
@@ -50,18 +50,4 @@ class CommentManager
 		return $getReported;
 	}
 
-	//connexion à la bdd
-	private function bddConnect()
-	{
-		try
-		{
-			$bdd = new PDO("mysql:host=localhost;dbname=blog_jean;charset=utf8", "root", "root");
-			return $bdd;
-		}
-		//affichage si erreur
-		catch(Exception $e)
-		{
-			die("Erreur : " . $e->getMessages());
-		}
-	}
 }

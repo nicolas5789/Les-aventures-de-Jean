@@ -1,6 +1,6 @@
 <?php
 
-class CheckId
+class CheckId extends Manager
 {
 	//vérification du mot de passe
 	public function controlAccess() // FONCTION EN PRIVATE ? 
@@ -21,21 +21,7 @@ class CheckId
 		} else {
 			$result = "access denied";
 		}
-		return $result;
+		return $result;	//retourne une valeur en fonction de la validité du mdp
 	}
 
-	//connexion à la bdd
-	private function bddConnect()
-	{
-		try
-		{
-			$bdd = new PDO("mysql:host=localhost;dbname=blog_jean;charset=utf8", "root", "root");
-			return $bdd;
-		}
-		//affichage si erreur
-		catch(Exception $e)
-		{
-			die("Erreur : " . $e->getMessages());
-		}
-	}
 }

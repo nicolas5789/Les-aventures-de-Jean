@@ -1,6 +1,7 @@
 <?php
+require_once("model/manager.php");
 
-class PostManager
+class PostManager extends Manager
 {
 	//obtention des billets
 	public function getPosts() 
@@ -30,7 +31,6 @@ class PostManager
 		$req_deletePost->execute(array($postId));
 
 		return $req_deletePost;
-
 	}
 
 	//obtention d'un billet selon son id
@@ -54,20 +54,4 @@ class PostManager
 
 		return $sendPost; 
 	}
-
-	//connexion à la bdd
-	private function bddConnect()
-	{
-		try
-		{
-			$bdd = new PDO("mysql:host=localhost;dbname=blog_jean;charset=utf8", "root", "root");
-			return $bdd;
-		}
-		//affichage si erreur
-		catch(Exception $e)
-		{
-			die("Erreur : " . $e->getMessages());
-		}
-	}
-
 }

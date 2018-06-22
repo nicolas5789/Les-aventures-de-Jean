@@ -63,6 +63,8 @@ function access()
 {
 	$checkId = new CheckId();
 
+	$passwordBddPseudo = $checkId->controlAccess();
+
 	$result = $checkId->controlAccess();
 
 	if ($result == "access granted") 
@@ -72,5 +74,5 @@ function access()
 	{
 		header("Location: index.php?action=formAccess"); //VOIR COMMENT AJOUTER MESSAGE MDP INCORRECT
 	}
-
+	
 }

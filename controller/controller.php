@@ -5,6 +5,7 @@ require("model/post.php");
 require("model/comment.php");
 
 
+
 function listPosts()
 {
 	$postManager = new PostManager();

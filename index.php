@@ -36,23 +36,29 @@ if (isset($_GET["action"])) // si dans l'url index une action est présente alor
 
 	} elseif ($_GET["action"] == "checkId") { //controle id et mdp pour accès
 		access();
-	} elseif ($_GET["action"] == "editPost") {
+	} elseif ($_GET["action"] == "editPost") { //ouvre la page pour éditer un billet
 		if (isset($_GET["id"]) && $_GET["id"] > 0) {
 			editPost();
 		} else {
 			echo "Aucun Id de billet transmis";
 		}
-	} elseif ($_GET["action"] == "changePost") {
+	} elseif ($_GET["action"] == "changePost") { //envoi le billet modifié à la bdd
 		if (isset($_GET["id"]) && $_GET["id"] > 0) {
 			changePost();
 		} else {
 			echo "Aucun Id de billet transmis";
 		}
-	} elseif ($_GET["action"] == "deletePost") {
+	} elseif ($_GET["action"] == "deletePost") { //supprime un billet de la bdd
 		if (isset($_GET["id"]) && $_GET["id"] > 0) {
 			deletePost();
 		} else {
 			echo "Aucun Id de billet transmis";
+		}
+	} elseif ($_GET["action"] == "deleteCom") {
+		if (isset($_GET["id"]) && $_GET["id"] > 0) {
+			deleteCom();
+		} else {
+			echo "Aucun Id de commentaire transmis";
 		}
 	}
 

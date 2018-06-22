@@ -3,7 +3,16 @@
 //plusieurs autres model déjà appelé dans controller.php
 require("model/connexion.php");
 
-function deletePost()
+function deleteCom()
+{
+	$commentManager = new CommentManager();
+
+	$req_deleteCom = $commentManager->deleteCom($_GET["id"]);
+
+	header("Location: index.php?action=admin");
+}
+
+function deletePost() // supprime un billet slon son id de la bdd
 {
 	$postManager = new PostManager();
 

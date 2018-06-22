@@ -64,7 +64,7 @@
 			 	Commentaire :
 			 	<?php echo htmlspecialchars($reportedCom["contenu"]); ?>
 			 </p>
-			
+			<a href="index.php?action=deleteCom&amp;id=<?= $reportedCom["id"] ?>">Supprimer le commentaire</a>
 		</div>
 		<?php
 		}

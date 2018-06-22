@@ -2,6 +2,17 @@
 
 class CommentManager
 {
+	//suppression d'un commentaire selon son id
+	public function deleteCom($commentId)
+	{
+		$bdd = $this->bddConnect();
+		$req_deleteCom = $bdd->prepare("DELETE FROM commentaires WHERE id = ?");
+		$req_deleteCom->execute(array($commentId));
+
+		return $req_deleteCom;
+	}
+
+
 	//obtention des commentaires
 	public function getComments($postId)
 	{

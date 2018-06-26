@@ -3,15 +3,16 @@
 
 require("controller/controller.php"); //appel des controleur
 require("controller/adminController.php");
+require("controller/loginController.php");
 
-if (isset($_GET["action"])) // si dans l'url index une action est présente alors affichage d'un post précis avec ses com
+if (isset($_GET["action"])) // si dans l'url index une action est précisée
 {
-	if ($_GET["action"] == "listPosts") //affiche les billets
+	if ($_GET["action"] == "listPosts") //affichage des billets
 	{ 
 		listPosts();
 	} 
 
-	elseif ($_GET["action"] == "post") //affiche un billet précis
+	elseif ($_GET["action"] == "post") //affichage d'un billet précis
 	{ 
 		if (isset($_GET["id"]) && $_GET["id"] > 0) {
 			post();
@@ -25,7 +26,7 @@ if (isset($_GET["action"])) // si dans l'url index une action est présente alor
 		newComments($_GET["id"], $_POST["auteur"], $_POST["contenu"]);
 	} 
 
-	elseif ($_GET["action"] == "admin") //affiche la page admin avec billets et signalements //VOIR COMMENT SECURISER
+	elseif ($_GET["action"] == "admin") //affiche la page admin avec billets et signalements 
 	{ 
 		admin(); 
 	} 
@@ -49,8 +50,14 @@ if (isset($_GET["action"])) // si dans l'url index une action est présente alor
 		header("Location: view/connexion.php");
 	} 
 
-	elseif ($_GET["action"] == "checkId") { //controle id et mdp pour accès
-		access();
+	elseif ($_GET["action"] == "checkId") //controle id et mdp pour accès
+	{
+		if(isset($_POST["pseudo"]) && isset($_POST["pass"]))
+		{ 
+			access($_POST["pseudo"], $_POST["pass"]);
+		} else {
+			header("Location: view/connexion.php");
+		}
 	} 
 
 	elseif ($_GET["action"] == "editPost") //ouvre la page pour éditer un billet
@@ -89,7 +96,7 @@ if (isset($_GET["action"])) // si dans l'url index une action est présente alor
 		}
 	}
 
-	elseif ($_GET["action"] == "disconnect") //renvoi vers la page d'accueil sans session
+	elseif ($_GET["action"] == "disconnect") //renvoi vers la page d'accueil et ferme session
 	{
 		session_start();
 		session_destroy();

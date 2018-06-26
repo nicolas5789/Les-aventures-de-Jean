@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
+{
+
+} else
+{
+	header("Location: index.php");
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +23,9 @@
 	<div id="editPost">
 		<h3>Modifier un billet</h3>
 		<form action="index.php?action=changePost&amp;id=<?= $post["id"]?>" method="post">
-			<label for="auteur"> Auteur du billet </label> <input type="text" name="auteur" id="auteur" value="<?php echo htmlspecialchars($post["auteur"]) ?>" required /> <!--PROBLEME TOUT SUR LA MEME LIGNE -->
-			<label for="contenu"> Contenu du billet </label> <input type="text" name="contenu" id="contenu" value="<?php echo htmlspecialchars($post["contenu"]) ?>" required /> <!--PROBLEME TOUT SUR LA MEME LIGNE -->
+			<label for="auteur"> Auteur du billet </label> <input type="text" name="auteur" id="auteur" value="<?php echo htmlspecialchars($post["auteur"]) ?>" required /> 
+			<textarea name="contenu"> <?php echo htmlspecialchars($post["contenu"]) ?> </textarea>
+
 			<button type="submit"> Modifier </button>
 		</form>
 	</div>

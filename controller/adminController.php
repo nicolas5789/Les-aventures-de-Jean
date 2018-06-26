@@ -58,7 +58,17 @@ function admin()
 
 	require("view/admin.php");
 }
+/*
+function pass($pseudo)
+{
+	
+	$checkId = new CheckId();
+	$passwordBddPseudo = $checkId->pass($pseudo);
 
+	require("view/connexion.php");
+}
+*/
+/*
 function access()
 {
 	$checkId = new CheckId();
@@ -67,6 +77,8 @@ function access()
 
 	$result = $checkId->controlAccess();
 
+	require("view/connexion.php");
+	
 	if ($result == "access granted") 
 	{
 		header("Location: index.php?action=admin");
@@ -76,3 +88,4 @@ function access()
 	}
 	
 }
+*/

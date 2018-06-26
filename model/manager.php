@@ -16,4 +16,10 @@ class Manager
 			die("Erreur : " . $e->getMessages());
 		}
 	}
+
+	public function endSession()
+	{
+		session_strat();
+		session_destroy();
+	}
 }

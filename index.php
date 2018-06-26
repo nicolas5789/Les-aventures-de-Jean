@@ -89,6 +89,13 @@ if (isset($_GET["action"])) // si dans l'url index une action est présente alor
 		}
 	}
 
+	elseif ($_GET["action"] == "disconnect") //renvoi vers la page d'accueil sans session
+	{
+		session_start();
+		session_destroy();
+		header("Location: index.php");
+	}
+
 } else {
 	listPosts(); //affiche la page d'accueil simple avec les billets
 }

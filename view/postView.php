@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +22,7 @@
 		<h3>Ajouter un commentaire</h3>
 		<form action= "index.php?action=addComment&amp;id=<?= $post["id"]?>" " method="post">
 			<label for="auteur"> Pseudo </label> <input type="text" name="auteur" id="auteur" required />
-			<label for="contenu"> Commentaire </label><input type="text" name="contenu" id="contenu" required />
+			<label> Commentaire <textarea name="contenu" required></textarea> </label>
 			<button type="submit"> Envoyer </button>
 		</form>
 	</div>

@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
+{
+
+} else
+{
+	header("Location: index.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,12 +20,11 @@
 </head>
 <body>
 	<h1>Espace administrateur</h1>
-
 	<div id="addPost">
 		<h3>Ajouter un billet</h3>
 		<form action="index.php?action=addPost" method="post">
 			<label for="auteur"> Auteur du billet </label> <input type="text" name="auteur" id="auteur" required />
-			<label for="contenu"> Contenu du billet </label><input type="text" name="contenu" id="contenu" required />
+			<label> Contenu du billet <textarea name="contenu" required></textarea> </label>
 			<button type="submit"> Créer </button>
 		</form>
 	</div>
@@ -75,7 +87,7 @@
 
 
 	<div id="disconnect">
-		<a href="index.php">Déconnexion</a>
+		<a href="index.php?action=disconnect">Déconnexion</a>
 	</div>
 
 </body>

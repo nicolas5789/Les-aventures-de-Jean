@@ -1,0 +1,38 @@
+body {
+	background-color: #C2C2D1;
+}
+
+h1, h2 {
+	text-align: center;
+}
+.billets {
+	border: 1px solid black;
+	margin-bottom: 10px;
+}
+
+td {
+	text-align: right;
+}
+
+.labelNewPost, .labelEditPost{
+	width: 100%;
+	height: 200px;
+}
+.labelEditPost {
+	height: 400px;
+}
+.labelNewCom {
+	width: 100%;
+}
+
+.reportedCom {
+	border: 1px solid black;
+	margin-bottom: 5px;
+}
+
+.deleteCom {
+	text-align: right;
+}
+#retour {
+	position: fixed;
+}

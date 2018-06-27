@@ -44,7 +44,7 @@ class CommentManager extends Manager
 	public function getReportedCom()
 	{
 		$bdd = $this->bddConnect();
-		$getReported = $bdd->query("SELECT * FROM commentaires WHERE nb_signalement > 0");
+		$getReported = $bdd->query("SELECT * FROM commentaires WHERE nb_signalement > 0 ORDER BY nb_signalement DESC");
 		$getReported->execute(array());
 
 		return $getReported;

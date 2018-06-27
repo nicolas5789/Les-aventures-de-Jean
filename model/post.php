@@ -7,7 +7,7 @@ class PostManager extends Manager
 	public function getPosts() 
 	{ 
 		$bdd = $this->bddConnect();
-		$posts = $bdd->query("SELECT * FROM billets ORDER BY date_creation DESC LIMIT 0, 5");
+		$posts = $bdd->query("SELECT * FROM billets ORDER BY date_creation DESC");
 
 		return $posts;
 	}

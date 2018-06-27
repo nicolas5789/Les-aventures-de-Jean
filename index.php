@@ -7,12 +7,7 @@ require("controller/loginController.php");
 
 if (isset($_GET["action"])) // si dans l'url index une action est précisée
 {
-	if ($_GET["action"] == "listPosts") //affichage des billets
-	{ 
-		listPosts();
-	} 
-
-	elseif ($_GET["action"] == "post") //affichage d'un billet précis
+	if ($_GET["action"] == "post") //affichage d'un billet précis
 	{ 
 		if (isset($_GET["id"]) && $_GET["id"] > 0) {
 			post();

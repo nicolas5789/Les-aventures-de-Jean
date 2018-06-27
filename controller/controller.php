@@ -4,14 +4,12 @@
 require("model/post.php");
 require("model/comment.php");
 
-
-
 function listPosts()
 {
 	$postManager = new PostManager();
 
-	$posts = $postManager->getPosts(); //permet d'obtenir les billets(posts)
-
+	$posts = $postManager->getPosts(); //permet d'obtenir les billets avec leurs info(posts)
+	
 	require("view/blog.php"); //lance la page affichant les billets
 }
 

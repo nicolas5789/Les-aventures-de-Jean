@@ -1,7 +1,7 @@
 <?php
 //index.php fait office de routeur
 
-require("controller/controller.php"); //appel des controleur
+require("controller/controller.php"); //appel des controleurs
 require("controller/adminController.php");
 require("controller/loginController.php");
 
@@ -98,6 +98,7 @@ if (isset($_GET["action"])) // si dans l'url index une action est précisée
 		header("Location: index.php");
 	}
 
-} else {
+} else 
+{
 	listPosts(); //affiche la page d'accueil simple avec les billets
 }

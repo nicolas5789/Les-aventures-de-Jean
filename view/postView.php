@@ -1,10 +1,11 @@
 <?php
-session_start();
+//session_start();
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<title>Blog de Jean</title>
@@ -52,7 +53,7 @@ session_start();
 								<p>
 									Le <?php echo $comment["date_creation"] ?> <?php echo htmlspecialchars($comment["auteur"]) ?> a écrit : <br>
 									<?php echo htmlspecialchars($comment["contenu"]) ?> <br>
-									<a class="badge badge-warning" href="index.php?action=signal&amp;id=<?= $comment["id"]?>" onclick="return confirm('Etes-vous sûr de vouloir signaler ce commentaire ?');" >Signaler le commentaire</a> <!--VOIR POUR RESTER SUR LA MEME PAGE AU CLIC-->
+									<a class="badge badge-warning" href="index.php?action=signal&amp;id=<?= $comment["id"]?>&amp;postId=<?php echo htmlspecialchars($post["id"]) ?>" onclick="return confirm('Etes-vous sûr de vouloir signaler ce commentaire ?');" >Signaler le commentaire</a> 
 								</p>
 							</div>
 						<?php

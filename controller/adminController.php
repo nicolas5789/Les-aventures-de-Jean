@@ -1,5 +1,4 @@
 <?php
-
 //plusieurs autres model déjà appelé dans controller.php
 require("model/connexion.php");
 
@@ -57,4 +56,6 @@ function admin()
 	$reportedComments = $commentManager->getReportedCom(); //permet d'obtenir les com signalés
 
 	require("view/admin.php");
-}
+}	
+
+

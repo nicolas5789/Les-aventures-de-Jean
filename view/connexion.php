@@ -11,6 +11,7 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<title>Blog de Jean</title>

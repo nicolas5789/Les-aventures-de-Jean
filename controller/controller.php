@@ -39,7 +39,9 @@ function newSignal()
 
 	$signal = $commentManager->setSignal($_GET["id"]);
 
-	header("Location: index.php");
+	$postId = $_GET["postId"];
+
+	header("Location: index.php?action=post&id=".$postId);
 
 }
 

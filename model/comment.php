@@ -26,9 +26,13 @@ class CommentManager extends Manager
 	//ajout des commentaires
 	public function setComment($postId, $auteur, $contenu)
 	{
+		$postIdSafe = htmlspecialchars($postId); //sécurisation des données envoyées
+		$auteurSafe = htmlspecialchars($auteur);
+		$contenuSafe = htmlspecialchars($contenu);
+
 		$bdd = $this->bddConnect();
 		$addComment = $bdd->prepare("INSERT INTO commentaires(id_billet, auteur, date_creation, contenu) VALUES(?, ?, NOW(), ?)");
-		$sendComment = $addComment->execute(array($postId, $auteur, $contenu));
+		$sendComment = $addComment->execute(array($postIdSafe, $auteurSafe, $contenuSafe));
 
 		return $sendComment; 
 	}

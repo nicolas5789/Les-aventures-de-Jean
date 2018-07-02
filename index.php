@@ -70,7 +70,7 @@ if (isset($_action))
 
 		case "formAccess" :
 		{
-			header("Location: views/connexion.php");
+			header("Location: views/admin/adminConnexion.php");
 			break;
 		}
 
@@ -81,7 +81,7 @@ if (isset($_action))
 				access($_POST["pseudo"], $_POST["pass"]);
 			} else 
 			{
-				header("Location: views/connexion.php");
+				header("Location: views/admin/adminConnexion.php");
 			}	
 			break;
 		}

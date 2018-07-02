@@ -12,8 +12,8 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<link rel="stylesheet" type="text/css" href="../public/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="../public/css/style.css">
+	<link rel="stylesheet" type="text/css" href="../../public/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../public/css/style.css">
 	<title>Blog de Jean</title>
 </head>
 <body>
@@ -21,7 +21,7 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 	<div id="connexion_form" align="center">
 		<h2>Connexion</h2>
 		<div id="formulaire_connexion">
-			<form method="POST" action="../index.php?action=checkId">
+			<form method="POST" action="../../index.php?action=checkId">
 				<table>
 					<tr>
 						<td><label for="pseudo"> Pseudo </label></td>
@@ -46,7 +46,7 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 				}
 				?>	
 			</p>
-			<a href="../index.php">Retourner au blog</a>
+			<a href="../../index.php">Retourner au blog</a>
 		</div>
 	</div>
 

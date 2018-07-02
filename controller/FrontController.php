@@ -10,7 +10,7 @@ function listPosts()
 
 	$posts = $postManager->getPosts(); //permet d'obtenir les billets avec leurs info(posts)
 	
-	require("views/blog.php"); //lance la page affichant les billets
+	require("views/front/frontBlog.php"); //lance la page affichant les billets
 }
 
 function post() //affiche un post avec ses com
@@ -21,7 +21,7 @@ function post() //affiche un post avec ses com
 	$post = $postManager->getPost($_GET["id"]); //obtient un post précis
 	$comments = $commentManager->getComments($_GET["id"]); // obtient les com d'un post selon son id
 	
-	require("views/postView.php"); //affiche un post avec ses comments
+	require("views/front/frontPostView.php"); //affiche un post avec ses comments
 }
 
 function newComments($id_billet, $auteur, $contenu)

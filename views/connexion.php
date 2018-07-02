@@ -12,8 +12,8 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" type="text/css" href="../public/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../public/css/style.css">
 	<title>Blog de Jean</title>
 </head>
 <body>
@@ -39,15 +39,14 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 				<input type="submit" value="Je m'identifie" name="formConnexion" />
 			</form>
 
-
-				<p>
-					<?php if(isset($_SESSION["erreur"])) 
-					{
-						echo $_SESSION["erreur"];
-					}
-					?>	
-				</p>
-			</form>
+			<p>
+				<?php if(isset($_SESSION["erreur"])) 
+				{
+					echo $_SESSION["erreur"];
+				}
+				?>	
+			</p>
+			<a href="../index.php">Retourner au blog</a>
 		</div>
 	</div>
 

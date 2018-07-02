@@ -35,7 +35,7 @@ function editPost() //obtient billet dans zone de modification
 
 	$post = $postManger->getPost($_GET["id"]);
 
-	require("view/editPost.php"); 
+	require("views/editPost.php"); 
 }
 
 function newPost($auteur, $contenu) //permet d'ajouter un billet
@@ -55,7 +55,7 @@ function admin()
 	$posts = $postManager->getPosts(); //permet d'obtenir les billets(posts)
 	$reportedComments = $commentManager->getReportedCom(); //permet d'obtenir les com signalés
 
-	require("view/admin.php");
+	require("views/admin.php");
 }	
 
 

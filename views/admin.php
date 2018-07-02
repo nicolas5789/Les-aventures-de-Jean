@@ -1,5 +1,4 @@
 <?php
-//session_start();
 
 if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 {
@@ -16,8 +15,8 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="public/css/style.css">
 	<title>Blog de Jean</title>
 </head>
 <body>
@@ -34,7 +33,7 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 							<label for="auteur"> Auteur du billet <input type="text" name="auteur" id="auteur" required /> </label> <br>
 							<label class="labelNewPost"> <textarea class="labelNewPost" name="contenu" required placeholder="Tapez le contenu de votre billet ici"></textarea> </label> <br>
 							</table>
-							<button class="btn btn-primary" type="submit"> Créer un nouveau billet </button>
+							<button class="btn btn-primary" type="submit" onclick="return confirm('Etes-vous sûr de vouloir mettre ce billet en ligne ?');"> Créer un nouveau billet </button>
 						</form>
 					</div>
 				</div>

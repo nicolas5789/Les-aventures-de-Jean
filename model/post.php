@@ -13,12 +13,12 @@ class PostManager extends Manager
 	}
 
 	//modification d'un billet selon son id
-	public function changePost($auteur, $contenu, $postId)
+	public function changePost($titre, $contenu, $postId)
 	{
 		
 		$bdd = $this->bddConnect();
-		$editPost = $bdd->prepare("UPDATE billets SET auteur = ?, contenu = ? WHERE id = ?");
-		$sendPost = $editPost->execute(array($auteur, $contenu, $postId));
+		$editPost = $bdd->prepare("UPDATE billets SET titre = ?, contenu = ? WHERE id = ?");
+		$sendPost = $editPost->execute(array($titre, $contenu, $postId));
 
 		return $sendPost;
 	}
@@ -46,11 +46,11 @@ class PostManager extends Manager
 	}
 
 	//ajout d'un billet 
-	public function setPost($auteur, $contenu)
+	public function setPost($titre, $contenu)
 	{
 		$bdd = $this->bddConnect();
-		$addPost = $bdd->prepare("INSERT INTO billets(auteur, date_creation, contenu) VALUES(?, NOW(), ?)");
-		$sendPost = $addPost->execute(array($auteur, $contenu));
+		$addPost = $bdd->prepare("INSERT INTO billets(titre, date_creation, contenu) VALUES(?, NOW(), ?)");
+		$sendPost = $addPost->execute(array($titre, $contenu));
 
 		return $sendPost; 
 	}

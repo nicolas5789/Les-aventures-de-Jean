@@ -24,7 +24,7 @@ function changePost() //envoi le billet modifié à la bdd
 {
 	$postManager = new PostManager();
 
-	$sendPost = $postManager->changePost($_POST["auteur"], $_POST["contenu"], $_GET["id"]);
+	$sendPost = $postManager->changePost($_POST["titre"], $_POST["contenu"], $_GET["id"]);
 
 	header("Location: index.php?action=admin");
 }
@@ -35,14 +35,14 @@ function editPost() //obtient billet dans zone de modification
 
 	$post = $postManger->getPost($_GET["id"]);
 
-	require("views/admin/adminEditPost.php"); 
+	require("views/admin/adminEditPostView.php"); 
 }
 
-function newPost($auteur, $contenu) //permet d'ajouter un billet
+function newPost($titre, $contenu) //permet d'ajouter un billet
 {
 	$postManager = new PostManager();
 
-	$sendPost = $postManager->setPost($auteur, $contenu);
+	$sendPost = $postManager->setPost($titre, $contenu);
 
 	header("Location: index.php?action=admin");
 }
@@ -57,5 +57,10 @@ function admin()
 
 	require("views/admin/adminView.php");
 }	
+
+function connectForm()
+{
+	require("views/admin/adminConnexionView.php");
+}
 
 

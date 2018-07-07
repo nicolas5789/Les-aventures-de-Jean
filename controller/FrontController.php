@@ -1,8 +1,17 @@
 <?php
 
+//TOUT PLACER DANS UNE CLASSE
+//METHODE EN STATIC
+
+
 //appel des model
 require("model/post.php");
 require("model/comment.php");
+//REMPLACER PAR AUTOLOAD
+function home()
+{
+	require("views/front/frontHomeView.php");
+}
 
 function listPosts()
 {
@@ -10,7 +19,7 @@ function listPosts()
 
 	$posts = $postManager->getPosts(); //permet d'obtenir les billets avec leurs info(posts)
 	
-	require("views/front/frontBlog.php"); //lance la page affichant les billets
+	require("views/front/frontBlogView.php"); //lance la page affichant les billets
 }
 
 function post() //affiche un post avec ses com
@@ -42,6 +51,7 @@ function newSignal()
 	$postId = $_GET["postId"];
 
 	header("Location: index.php?action=post&id=".$postId);
-
 }
+
+
 

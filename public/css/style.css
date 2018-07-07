@@ -1,3 +1,55 @@
+.jumbotron {
+	background: url("../images/alaska.jpg");
+	background-position: center;
+	background-size: cover;
+}
+
+#bloc_haut {
+	color: aliceblue;
+	text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+#labelNewCom, #labelNewPost, .labelEditPost, .textareaEditPost {
+	width: 100%;
+}
+
+#textareaNewCom {
+	height: 100px;
+}
+
+#textareaNewPost {
+	height: 200px;
+}
+
+.textareaEditPost {
+	height: 400px;
+}
+
+#bloc_centre, #signalements h3 {
+	text-align: center;
+}
+#billet p, #contenu_billet, .contenuBillet {
+	text-align: justify;
+}
+footer {
+	text-align: center;
+	margin-top: 60px;
+	background-color: darkgrey;
+}
+#commentaires {
+	text-align: initial;
+}
+.timeCom {
+	position: absolute;
+	right: 0px;
+}
+.enteteBillet, #signalements {
+	text-align: initial;
+}
+#affichages_billets, #signalements {
+	margin-top: 60px;
+}
+/*
 body {
 	background-color: #C2C2D1;
 }
@@ -36,3 +88,4 @@ td {
 #retour {
 	position: fixed;
 }
+*/

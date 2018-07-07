@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+//APPEL DIRECTEMENT
 
 require("controller/FrontController.php"); //appel des controleurs
 require("controller/AdminController.php");
@@ -19,6 +20,16 @@ if (isset($_action))
 {	
 	switch ($_action)
 	{
+		case "home" :
+		{
+			home();
+			break;
+		}
+		case "blog" :
+		{
+			listPosts();
+			break;
+		}
 		case "post" :
 			if (isset($_id) && $_id > 0) 
 		{
@@ -45,7 +56,7 @@ if (isset($_action))
 		{
 			if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 			{
-				newPost($_POST["auteur"], $_POST["contenu"]);
+				newPost($_POST["titre"], $_POST["contenu"]);
 			} else 
 			{
 				header("Location: index.php");
@@ -70,7 +81,7 @@ if (isset($_action))
 
 		case "formAccess" :
 		{
-			header("Location: views/admin/adminConnexion.php");
+			connectForm();
 			break;
 		}
 
@@ -81,7 +92,7 @@ if (isset($_action))
 				access($_POST["pseudo"], $_POST["pass"]);
 			} else 
 			{
-				header("Location: views/admin/adminConnexion.php");
+				connectForm();
 			}	
 			break;
 		}
@@ -167,11 +178,11 @@ if (isset($_action))
 
 		default :
 		{
-			listPosts();
+			home();
 			break;	
 		}
 	}
 } else
 {
-	listPosts();
+	home();
 }

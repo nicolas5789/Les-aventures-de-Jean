@@ -1,5 +1,4 @@
 <?php
-
 if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 {
 
@@ -7,22 +6,10 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 {
 	header("Location: index.php");
 }
-
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-	<link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="public/css/style.css">
-	<title>Blog de Jean</title>
-</head>
-<body>
-
-	<h1>Espace administrateur</h1>
-
+<?php $title = "Espace administrateur"; ?>
+<?php ob_start(); ?>
 	<div class="container-fluid">
 		<div class="container">
 			<div class="row">
@@ -30,8 +17,8 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 					<div id="addPost">
 						<h3>Ajouter un billet</h3>
 						<form action="index.php?action=addPost" method="post">
-							<label for="auteur"> Auteur du billet <input type="text" name="auteur" id="auteur" required /> </label> <br>
-							<label class="labelNewPost"> <textarea class="labelNewPost" name="contenu" required placeholder="Tapez le contenu de votre billet ici"></textarea> </label> <br>
+							<label for="titre"> Titre du billet <input class="form-control" type="text" name="titre" id="titre" required /> </label> <br>
+							<label id="labelNewPost" for="contenu"> <textarea id="textareaNewPost" class="form-control" name="contenu" required placeholder="Tapez le contenu de votre billet ici"></textarea> </label> <br>
 							</table>
 							<button class="btn btn-primary" type="submit" onclick="return confirm('Etes-vous sûr de vouloir mettre ce billet en ligne ?');"> Créer un nouveau billet </button>
 						</form>
@@ -40,7 +27,6 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 			</div>
 		</div>
 	</div>
-
 
 	<div class="container-fluid">
 		<div class="container">
@@ -52,10 +38,9 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 						while($data = $posts->fetch())
 						{
 						?>
-						<div class="billets">
+						<div class="billet">
 							<div class="enteteBillet">
-								<?php echo htmlspecialchars($data["auteur"]); ?>
-								<p> a écrit le <?php echo $data["date_creation"]; ?> </p>
+								<p><?php echo htmlspecialchars($data["titre"]) ?>, publié le <?php echo htmlspecialchars($data["date_creation"]); ?> </p>
 							</div>
 							<div class="contenuBillet">
 								<p> 
@@ -68,6 +53,7 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 								</p>
 							</div>
 						</div>
+						<hr>
 						<?php
 						}
 						$posts->closeCursor();
@@ -77,7 +63,6 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 			</div>
 		</div>
 	</div>
-
 
 	<div class="container-fluid">
 		<div class="container">
@@ -107,6 +92,7 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 								<a class="badge badge-danger" href="index.php?action=deleteCom&amp;id=<?= $reportedCom["id"] ?> " onclick="return confirm('Etes-vous sûr de vouloir supprimer ce commentaire ?');">Supprimer le commentaire</a>
 							</div>
 						</div>
+						<hr>
 						<?php
 						}
 						$reportedComments->closeCursor();
@@ -117,10 +103,9 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 		</div>
 	</div>
 
-
 	<div id="disconnect">
 		<a class="badge badge-dark" href="index.php?action=disconnect">Déconnexion</a>
 	</div>
+<?php $content = ob_get_clean(); ?>
+<?php require("adminTemplate.php"); ?>
 
-</body>
-</html>

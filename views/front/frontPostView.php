@@ -1,69 +1,42 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-	<link rel="stylesheet" type="text/css" href="public/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="public/css/style.css">
-	<title>Blog de Jean</title>
-</head>
-<body>
-	<h1>Blog de Jean</h1>
-
-	<?php
-	if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok") 
-	{
-		echo "<a class='badge badge-light' id='retour' href='index.php?action=admin'>Retour à l'administration </a>";
-	} else
-	{
-		echo "<a class='badge badge-light' id='retour' href='index.php'>Retour aux billets </a>";
-	}
-	?>
-
-
-
-	<div class="container-fluid">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div id = "billet"> 
-						<h6>Le <?php echo $post["date_creation"] . " " . $post["auteur"] ?> a écrit </h6>
-						<p> <?php echo htmlspecialchars($post["contenu"]) ?></p>
-					</div>
-
-					<div id="addComment">
-						<h3>Ajouter un commentaire</h3>
-						<form action= "index.php?action=addComment&amp;id=<?= $post["id"]?>" " method="post">
-							<label for="auteur"> <input type="text" name="auteur" id="auteur" placeholder="Entrez votre pseudo" required /> </label> <br>
-							<label class="labelNewCom"> <textarea class="labelNewCom" name="contenu" required placeholder="Tapez votre commentaire ici"></textarea> </label> <br>
-							<button class="btn btn-primary" type="submit"> Envoyer </button>
-						</form>
-					</div>
-
-					<div id= "commentaires">
-						<h3>Commentaires</h3>
-						<?php
-						while ($comment = $comments->fetch())
-						{
-						?>
-							<div class="commentaire">
-								<p>
-									Le <?php echo $comment["date_creation"] ?> <?php echo htmlspecialchars($comment["auteur"]) ?> a écrit : <br>
-									<?php echo htmlspecialchars($comment["contenu"]) ?> <br>
-									<a class="badge badge-warning" href="index.php?action=signal&amp;id=<?= $comment["id"]?>&amp;postId=<?php echo htmlspecialchars($post["id"]) ?>" onclick="return confirm('Etes-vous sûr de vouloir signaler ce commentaire ?');" >Signaler le commentaire</a> 
-								</p>
-							</div>
-						<?php
-						}
-						$comments->closeCursor();
-						?>
-					</div>
-
-				</div>
-			</div>
-		</div>
+<?php $title = "Billet"; ?>
+<?php ob_start(); ?>
+	<div id = "billet"> 
+		<p>
+			<h3> <?php echo $post["titre"] ?> </h3>
+			<span> Le <?php echo $post["date_creation"] ?> </span>
+		</p>
+		<p> <?php echo htmlspecialchars($post["contenu"]) ?></p>
 	</div>
 
+	<div class="form-group" id="addComment">
+		<h3>Ajouter un commentaire</h3>
+		<form action= "index.php?action=addComment&amp;id=<?= $post["id"]?>" " method="post">
+			<label for="auteur"> <input type="text" name="auteur" id="auteur" placeholder="Entrez votre pseudo" class="form-control" required /> </label> <br>
+			<label id="labelNewCom"> <textarea id="textareaNewCom" name="contenu" class="form-control" required placeholder="Tapez votre commentaire ici"></textarea> </label> <br>
+			<button class="btn btn-primary" type="submit"> Envoyer </button>
+		</form>
+	</div>
 
-</body>
-</html>
+	<div id= "commentaires">
+		<h3>Commentaires</h3>
+		<?php
+		while ($comment = $comments->fetch())
+		{
+		?>
+			<div class="commentaire">
+				<p>
+					<span> <strong><?php echo htmlspecialchars($comment["auteur"]) ?> </strong></span> <span class="timeCom"> Le <?php echo $comment["date_creation"] ?> </span> <br>
+					<?php echo htmlspecialchars($comment["contenu"]) ?> <br>
+					<a class="badge badge-warning" href="index.php?action=signal&amp;id=<?= $comment["id"]?>&amp;postId=<?php echo htmlspecialchars($post["id"]) ?>" onclick="return confirm('Etes-vous sûr de vouloir signaler ce commentaire ?');" >Signaler le commentaire</a> 
+				</p>
+				<hr>
+			</div>
+		<?php
+		}
+		$comments->closeCursor();
+		?>
+	</div>
+
+<?php $content = ob_get_clean(); ?>
+<?php require("template.php"); ?>
+

@@ -1,11 +1,15 @@
 <?php $title = "Billet"; ?>
+<?php $title_bloc = $post["titre"]; ?>
+<?php $description_bloc = ""; ?>
+<?php $lien = ""; ?>
+
 <?php ob_start(); ?>
 	<div id = "billet"> 
 		<p>
 			<h3> <?php echo $post["titre"] ?> </h3>
 			<span> Le <?php echo $post["date_creation"] ?> </span>
 		</p>
-		<p> <?php echo htmlspecialchars($post["contenu"]) ?></p>
+		<p> <?php echo ($post["contenu"]) ?></p>
 	</div>
 
 	<div class="form-group" id="addComment">
@@ -38,5 +42,5 @@
 	</div>
 
 <?php $content = ob_get_clean(); ?>
-<?php require("template.php"); ?>
+<?php require("views/template.php"); ?>
 

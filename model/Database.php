@@ -1,6 +1,6 @@
 <?php
 
-class Manager
+class Database
 {
 	//connexion à la bdd
 	protected function bddConnect()
@@ -16,11 +16,5 @@ class Manager
 		{
 			die("Erreur : " . $e->getMessages());
 		}
-	}
-
-	public function endSession()
-	{
-		session_strat();
-		session_destroy();
 	}
 }

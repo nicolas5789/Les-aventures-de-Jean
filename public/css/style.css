@@ -1,7 +1,12 @@
+body {
+	background-color: #f5f5dc80
+}
 .jumbotron {
 	background: url("../images/alaska.jpg");
 	background-position: center;
 	background-size: cover;
+	margin-top: 40px;
+	text-align: center;
 }
 
 #bloc_haut {
@@ -28,13 +33,18 @@
 #bloc_centre, #signalements h3 {
 	text-align: center;
 }
-#billet p, #contenu_billet, .contenuBillet {
+#billet p, #contenu_billet, #contenuBillet {
 	text-align: justify;
 }
+.contenu_billet {
+	text-align: initial;
+}
 footer {
+	position: relative;
 	text-align: center;
 	margin-top: 60px;
 	background-color: darkgrey;
+	bottom: -16px;
 }
 #commentaires {
 	text-align: initial;
@@ -49,43 +59,14 @@ footer {
 #affichages_billets, #signalements {
 	margin-top: 60px;
 }
-/*
-body {
-	background-color: #C2C2D1;
+#bouton_connexion {
+	margin-top: 10px;
 }
-
-h1, h2 {
-	text-align: center;
-}
-.billets {
-	border: 1px solid black;
-	margin-bottom: 10px;
-}
-
-td {
-	text-align: right;
-}
-
-.labelNewPost, .labelEditPost{
-	width: 100%;
-	height: 200px;
-}
-.labelEditPost {
-	height: 400px;
-}
-.labelNewCom {
+#img_aventurier {
 	width: 100%;
 }
-
-.reportedCom {
-	border: 1px solid black;
-	margin-bottom: 5px;
+#aventurier {
+	width: 35%;
+	margin: auto;
+	margin-bottom: 16px;
 }
-
-.deleteCom {
-	text-align: right;
-}
-#retour {
-	position: fixed;
-}
-*/

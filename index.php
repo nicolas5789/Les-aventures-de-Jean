@@ -1,11 +1,9 @@
 <?php
 session_start();
 
-//APPEL DIRECTEMENT
-
-require("controller/FrontController.php"); //appel des controleurs
+//appel des controleurs
+require("controller/FrontController.php"); 
 require("controller/AdminController.php");
-require("controller/LoginController.php");
 
 if(isset($_GET["action"]))
 {
@@ -22,18 +20,21 @@ if (isset($_action))
 	{
 		case "home" :
 		{
-			home();
+			$frontController = new FrontController(); 
+			$frontController->home();
 			break;
 		}
 		case "blog" :
 		{
-			listPosts();
+			$frontController = new FrontController(); 
+			$frontController->listPosts();
 			break;
 		}
 		case "post" :
 			if (isset($_id) && $_id > 0) 
 		{
-			post();
+			$frontController = new FrontController(); 
+			$frontController->post();
 		} else 
 		{
 			echo "Erreur : aucun id de billet transmis";
@@ -42,13 +43,15 @@ if (isset($_action))
 
 		case "addComment" :
 		{
-			newComments($_id, $_POST["auteur"], $_POST["contenu"]);
+			$frontController = new FrontController(); 
+			$frontController->newComments($_id, $_POST["auteur"], $_POST["contenu"]);
 			break;
 		}
 
 		case "admin" :
 		{
-			admin(); 	
+			$adminController = new AdminController();
+			$adminController->admin();
 			break;
 		}
 
@@ -56,7 +59,8 @@ if (isset($_action))
 		{
 			if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 			{
-				newPost($_POST["titre"], $_POST["contenu"]);
+				$adminController = new AdminController();
+				$adminController->newPost($_POST["titre"], $_POST["contenu"]);
 			} else 
 			{
 				header("Location: index.php");
@@ -70,7 +74,8 @@ if (isset($_action))
 			{
 				if (isset($_GET["postId"]) && $_GET["postId"] > 0)
 				{
-					newSignal();
+					$frontController = new FrontController(); 
+					$frontController->newSignal();
 				} else 
 				{
 					echo "Aucun id de billet transmis";
@@ -81,7 +86,9 @@ if (isset($_action))
 
 		case "formAccess" :
 		{
-			connectForm();
+
+			$adminController = new AdminController();
+			$adminController->connectForm();
 			break;
 		}
 
@@ -89,10 +96,13 @@ if (isset($_action))
 		{
 			if(isset($_POST["pseudo"]) && isset($_POST["pass"]))
 			{ 
-				access($_POST["pseudo"], $_POST["pass"]);
+				
+				$adminController = new AdminController();
+				$adminController->access($_POST["pseudo"], $_POST["pass"]);
 			} else 
 			{
-				connectForm();
+				$adminController = new AdminController();
+				$adminController->connectForm();
 			}	
 			break;
 		}
@@ -103,7 +113,8 @@ if (isset($_action))
 			{
 				if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 				{
-					editPost();
+					$adminController = new AdminController();
+					$adminController->editPost();
 				} else 
 				{
 					header("Location: index.php");
@@ -121,7 +132,8 @@ if (isset($_action))
 			{
 				if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 				{
-					changePost();
+					$adminController = new AdminController();
+					$adminController->changePost();
 				} else
 				{
 					header("Location: index.php");
@@ -139,7 +151,8 @@ if (isset($_action))
 			{
 				if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 				{
-					deletePost();
+					$adminController = new AdminController();
+					$adminController->deletePost();
 				} else
 				{
 					header("Location: index.php");
@@ -157,7 +170,8 @@ if (isset($_action))
 			{
 				if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 				{
-					deleteCom();
+					$adminController = new AdminController();
+					$adminController->deleteCom();
 				} else 
 				{
 					header("Location: index.php");
@@ -178,11 +192,13 @@ if (isset($_action))
 
 		default :
 		{
-			home();
+			$frontController = new FrontController(); 
+			$frontController->home();
 			break;	
 		}
 	}
 } else
 {
-	home();
+	$frontController = new FrontController(); 
+	$frontController->home();
 }

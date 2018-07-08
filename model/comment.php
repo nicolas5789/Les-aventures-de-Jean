@@ -1,57 +1,94 @@
 <?php
-require_once("model/manager.php");
 
-class CommentManager extends Manager
+class Comment 
 {
-	//suppression d'un commentaire selon son id
-	public function deleteCom($commentId)
-	{
-		$bdd = $this->bddConnect();
-		$req_deleteCom = $bdd->prepare("DELETE FROM commentaires WHERE id = ?");
-		$req_deleteCom->execute(array($commentId));
+	private $_id;
+	private $_id_billet;
+	private $_auteur;
+	private $_date_creation;
+	private $_nb_signalement;
+	private $_contenu; 
 
-		return $req_deleteCom;
+//getters
+
+	public function id()
+	{
+		return $this->_id;
 	}
 
-	//obtention des commentaires
-	public function getComments($postId)
+	public function id_billet()
 	{
-		$bdd = $this->bddConnect();
-		$comments = $bdd->prepare("SELECT * FROM commentaires WHERE id_billet = ? ORDER BY date_creation DESC");
-		$comments->execute(array($postId));
-
-		return $comments;
+		return $this->_id_billet;
 	}
 
-	//ajout des commentaires
-	public function setComment($postId, $auteur, $contenu)
+	public function auteur()
 	{
-		$postIdSafe = htmlspecialchars($postId); //sécurisation des données envoyées
-		$auteurSafe = htmlspecialchars($auteur);
-		$contenuSafe = htmlspecialchars($contenu);
-
-		$bdd = $this->bddConnect();
-		$addComment = $bdd->prepare("INSERT INTO commentaires(id_billet, auteur, date_creation, contenu) VALUES(?, ?, NOW(), ?)");
-		$sendComment = $addComment->execute(array($postIdSafe, $auteurSafe, $contenuSafe));
-
-		return $sendComment; 
+		return $this->_auteur;
 	}
 
-	//signalement d'un commentaire
-	public function setSignal($id)
+	public function date_creation()
 	{
-		$bdd = $this->bddConnect();
-		$addSignal = $bdd->query("UPDATE commentaires SET nb_signalement = nb_signalement+1 WHERE id = $id");
+		return $this->_date_creation;
 	}
 
-	//obtention des commentaires signalés
-	public function getReportedCom()
+	public function nb_signalement()
 	{
-		$bdd = $this->bddConnect();
-		$getReported = $bdd->query("SELECT * FROM commentaires WHERE nb_signalement > 0 ORDER BY nb_signalement DESC");
-		$getReported->execute(array());
+		return $this->_nb_signalement;
+	}
 
-		return $getReported;
+	public function contenu()
+	{
+		return $this->_contenu;
+	}
+
+//setters
+
+	public function setId($id)
+	{
+		$id = (int) $id; // conversion en entier si ce n'est pas déjà le cas
+		if ($id > 0) 
+		{
+			$this->_id = $id; //la valeur est assigné à l'attribut correspondant
+		}
+	}
+
+	public function setId_billet($id_billet)
+	{
+		$id_billet = (int) $id_billet; 
+		if ($id_billet > 0) 
+		{
+			$this->_id_billet = $id_billet; 
+		}	
+	}
+
+	public function setAuteur($auteur)
+	{
+		if (is_string($auteur)) //si la valeur est une chaine de caractères
+		{
+			$this->_auteur = $auteur;
+		}
+	}
+
+	public function setDate_creation($date_creation)
+	{
+		$this->_date_creation = $date_creation;
+	}
+
+	public function setNb_signalement($nb_signalement)
+	{
+		$nb_signalement = (int) $nb_signalement; 
+		if ($nb_signalement > 0) 
+		{
+			$this->_nb_signalement = $nb_signalement; 
+		}	
+	}
+
+	public function setContenu ($contenu)
+	{
+		if (is_string($contenu))
+		{
+			$this->_contenu = $contenu;
+		}
 	}
 
 }

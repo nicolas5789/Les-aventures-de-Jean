@@ -1,13 +1,13 @@
 <?php
-require_once("model/manager.php");
+require_once("model/Database.php");
 
-class PostManager extends Manager
+class PostManager extends Database
 {
 	//obtention des billets
 	public function getPosts() 
 	{ 
 		$bdd = $this->bddConnect();
-		$posts = $bdd->query("SELECT * FROM billets ORDER BY date_creation DESC");
+		$posts = $bdd->query("SELECT id, DATE_FORMAT(date_creation, '%d-%m-%Y à %Hh%i') AS date_creation, contenu, titre FROM billets ORDER BY date_creation DESC");
 
 		return $posts;
 	}

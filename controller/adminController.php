@@ -1,66 +1,86 @@
 <?php
-//plusieurs autres model déjà appelé dans controller.php
-require("model/connexion.php");
 
-function deleteCom()
+class AdminController 
 {
-	$commentManager = new CommentManager();
 
-	$req_deleteCom = $commentManager->deleteCom($_GET["id"]);
+	function deleteCom()
+	{
+		$commentManager = new CommentManager();
 
-	header("Location: index.php?action=admin");
-}
+		$req_deleteCom = $commentManager->deleteCom($_GET["id"]);
 
-function deletePost() // supprime un billet slon son id de la bdd
-{
-	$postManager = new PostManager();
+		header("Location: index.php?action=admin");
+	}
 
-	$req_deletePost = $postManager->deletePost($_GET["id"]);
+	function deletePost() // supprime un billet slon son id de la bdd
+	{
+		$postManager = new PostManager();
 
-	header("Location: index.php?action=admin");
-}
+		$req_deletePost = $postManager->deletePost($_GET["id"]);
 
-function changePost() //envoi le billet modifié à la bdd
-{
-	$postManager = new PostManager();
+		header("Location: index.php?action=admin");
+	}
 
-	$sendPost = $postManager->changePost($_POST["titre"], $_POST["contenu"], $_GET["id"]);
+	function changePost() //envoi le billet modifié à la bdd
+	{
+		$postManager = new PostManager();
 
-	header("Location: index.php?action=admin");
-}
+		$sendPost = $postManager->changePost($_POST["titre"], $_POST["contenu"], $_GET["id"]);
 
-function editPost() //obtient billet dans zone de modification
-{
-	$postManger = new PostManager();
+		header("Location: index.php?action=admin");
+	}
 
-	$post = $postManger->getPost($_GET["id"]);
+	function editPost() //obtient billet dans zone de modification
+	{
+		$postManger = new PostManager();
 
-	require("views/admin/adminEditPostView.php"); 
-}
+		$post = $postManger->getPost($_GET["id"]);
 
-function newPost($titre, $contenu) //permet d'ajouter un billet
-{
-	$postManager = new PostManager();
+		require("views/admin/adminEditPostView.php"); 
+	}
 
-	$sendPost = $postManager->setPost($titre, $contenu);
+	function newPost($titre, $contenu) //permet d'ajouter un billet
+	{
+		$postManager = new PostManager();
 
-	header("Location: index.php?action=admin");
-}
+		$sendPost = $postManager->setPost($titre, $contenu);
 
-function admin()
-{
-	$postManager = new PostManager();
-	$commentManager = new CommentManager();
+		header("Location: index.php?action=admin");
+	}
 
-	$posts = $postManager->getPosts(); //permet d'obtenir les billets(posts)
-	$reportedComments = $commentManager->getReportedCom(); //permet d'obtenir les com signalés
+	function admin()
+	{
+		$postManager = new PostManager();
+		$commentManager = new CommentManager();
 
-	require("views/admin/adminView.php");
-}	
+		$posts = $postManager->getPosts(); //permet d'obtenir les billets(posts)
+		$reportedComments = $commentManager->getReportedCom(); //permet d'obtenir les com signalés
 
-function connectForm()
-{
-	require("views/admin/adminConnexionView.php");
+		require("views/admin/adminView.php");
+	}	
+
+	function connectForm()
+	{
+		require("views/admin/adminConnexionView.php");
+	}
+
+	function access($pseudo, $pass)
+	{
+		$checkId = new CheckId();
+
+		$passwordBddPseudo = $checkId->getPassword($pseudo);
+
+		if(password_verify($pass, $passwordBddPseudo))
+		{
+			$_SESSION["access"] = "ok";
+			header("Location: index.php?action=admin");
+		} else
+		{
+			$_SESSION["erreur"] = "Pseudo ou mot de passe incorrect";
+			header("Location: index.php?action=checkId"); //renvoi vers index mais sans paramètre 
+		}
+		
+	}
 }
 
 

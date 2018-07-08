@@ -9,6 +9,10 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 ?>
 
 <?php $title = "Espace administrateur"; ?>
+<?php $title_bloc = "Espace d'administration"; ?>
+<?php $description_bloc = ""; ?>
+<?php $lien = ""; ?>
+
 <?php ob_start(); ?>
 	<div class="container-fluid">
 		<div class="container">
@@ -17,8 +21,8 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 					<div id="addPost">
 						<h3>Ajouter un billet</h3>
 						<form action="index.php?action=addPost" method="post">
-							<label for="titre"> Titre du billet <input class="form-control" type="text" name="titre" id="titre" required /> </label> <br>
-							<label id="labelNewPost" for="contenu"> <textarea id="textareaNewPost" class="form-control" name="contenu" required placeholder="Tapez le contenu de votre billet ici"></textarea> </label> <br>
+							<label for="titre"> <input class="form-control" type="text" name="titre" id="titre" placeholder="Titre" required /> </label> <br>
+							<label id="labelNewPost" for="contenu"> <textarea id="textareaNewPost" class="tiny" class="form-control" name="contenu" required placeholder="Tapez le contenu de votre billet ici"></textarea> </label> <br>
 							</table>
 							<button class="btn btn-primary" type="submit" onclick="return confirm('Etes-vous sûr de vouloir mettre ce billet en ligne ?');"> Créer un nouveau billet </button>
 						</form>
@@ -40,11 +44,11 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 						?>
 						<div class="billet">
 							<div class="enteteBillet">
-								<p><?php echo htmlspecialchars($data["titre"]) ?>, publié le <?php echo htmlspecialchars($data["date_creation"]); ?> </p>
+								<p> <strong> <?php echo htmlspecialchars($data["titre"]) ?> </strong>, publié le <?php echo htmlspecialchars($data["date_creation"]); ?> </p>
 							</div>
 							<div class="contenuBillet">
 								<p> 
-									<?php echo htmlspecialchars($data["contenu"]); ?>
+									<?php echo ($data["contenu"]); ?>
 									<br/>
 									<a class="badge badge-success" href="index.php?action=post&amp;id=<?= $data['id'] ?>">Voir le billet avec ses commentaires</a> <!--Si clic sur com: envoi du numéro de l'id du billet vers post.php --> 
 									<a class="badge badge-warning" href="index.php?action=editPost&amp;id=<?= $data['id'] ?>">Modifier le billet</a>
@@ -107,5 +111,5 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 		<a class="badge badge-dark" href="index.php?action=disconnect">Déconnexion</a>
 	</div>
 <?php $content = ob_get_clean(); ?>
-<?php require("adminTemplate.php"); ?>
+<?php require("views/template.php"); ?>
 

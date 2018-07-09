@@ -19,11 +19,20 @@
 		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
-					<a class="nav-link" href="index.php?action=home">Mon Aventure<span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="index.php?action=home">Mon Aventure<span class="sr-only"></span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="index.php?action=blog">Le Blog</a> 
+					<a class="nav-link" href="index.php?action=blog">Le Blog<span class="sr-only"></span></a> 
 				</li>
+				<?php if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
+				{ ?>
+				<li class="nav-item">
+					<a class="nav-link" href="index.php?action=admin">Administration<span class="sr-only"></span></a> 
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="index.php?action=disconnect">Déconnexion</a> 
+				</li>
+				<?php } ?> 
 			</ul>
 		</div>
 	</nav>

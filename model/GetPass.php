@@ -1,6 +1,6 @@
 <?php
 
-class CheckId extends Database
+class GetPass extends Database
 {
 	//vérification du mot de passe
 	public function getPassword($pseudo) 

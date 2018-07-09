@@ -66,9 +66,9 @@ class AdminController
 
 	function access($pseudo, $pass)
 	{
-		$checkId = new CheckId();
+		$getPass = new GetPass();
 
-		$passwordBddPseudo = $checkId->getPassword($pseudo);
+		$passwordBddPseudo = $getPass->getPassword($pseudo);
 
 		if(password_verify($pass, $passwordBddPseudo))
 		{

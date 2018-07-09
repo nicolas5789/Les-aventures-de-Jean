@@ -5,10 +5,11 @@
 
 
 //appel des model
-require("model/post.php");
+//require("model/Post.php");
+require("model/PostManager.php");
 //require("model/comment.php");
 require("model/CommentManager.php");
-require("model/connexion.php");
+require("model/GetPass.php");
 //REMPLACER PAR AUTOLOAD
 
 class FrontController

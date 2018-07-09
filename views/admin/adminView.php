@@ -50,7 +50,7 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 								<p> 
 									<?php echo ($data["contenu"]); ?>
 									<br/>
-									<a class="badge badge-success" href="index.php?action=post&amp;id=<?= $data['id'] ?>">Voir le billet avec ses commentaires</a> <!--Si clic sur com: envoi du numéro de l'id du billet vers post.php --> 
+									<a class="badge badge-success" href="index.php?action=post&amp;id=<?= $data['id'] ?>">Voir le billet avec ses commentaires</a> 
 									<a class="badge badge-warning" href="index.php?action=editPost&amp;id=<?= $data['id'] ?>">Modifier le billet</a>
 
 									<a class="badge badge-danger" href="index.php?action=deletePost&amp;id=<?= $data['id'] ?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce billet ?');">Supprimer le billet</a>

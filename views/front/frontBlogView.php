@@ -8,17 +8,19 @@
 	while($data = $posts->fetch())
 	{
 	?>
-	<p> 
-		<h3> <?php echo htmlspecialchars($data["titre"]); ?> </h3>
-		<span> Le <?php echo $data["date_creation"]; ?> </span>
-	</p> 	 
-	<div class="contenu_billet"> 
-		<?php echo (substr($data["contenu"], 0, 400))."..."; ?>
+	<div class="billets_blog">
+		<p> 
+			<h3> <?php echo htmlspecialchars($data["titre"]); ?> </h3>
+			<span> Le <?php echo $data["date_creation"]; ?> </span>
+		</p> 	 
+		<div class="contenu_billet"> 
+			<?php echo (substr($data["contenu"], 0, 700))."..."; ?>
+		</div>
+		<div class="liens_billets">
+			<a class="btn btn-secondary" href="index.php?action=post&amp;id=<?= $data['id'] ?>" role="button">Découvrir la suite &raquo;</a>
+		</div>
+		<hr>
 	</div>
-	<p>
-		<a class="btn btn-secondary" href="index.php?action=post&amp;id=<?= $data['id'] ?>" role="button">Découvrir la suite &raquo;</a>
-	</p>
-	<hr>
 	<?php
 	}
 	$posts->closeCursor();

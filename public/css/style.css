@@ -8,29 +8,45 @@ body {
 	margin-top: 40px;
 	text-align: center;
 }
-
+@media all and (max-width: 768px) {
+	h1.display-3 {
+		font-size: 2.5rem;
+	}
+}
 #bloc_haut {
 	color: aliceblue;
 	text-shadow: black 0.1em 0.1em 0.2em;
 }
-
 #labelNewCom, #labelNewPost, .labelEditPost, .textareaEditPost {
 	width: 100%;
 }
-
 #textareaNewCom {
 	height: 100px;
 }
-
 #textareaNewPost {
 	height: 200px;
 }
-
-.textareaEditPost {
+#textareaEditPost {
 	height: 400px;
 }
-
-#bloc_centre, #signalements h3 {
+.enteteBillet, #signalements {
+	text-align: initial;
+}
+#affichages_billets, #signalements {
+	margin-top: 60px;
+}
+#bouton_connexion {
+	margin-top: 10px;
+}
+#img_aventurier {
+	width: 100%;
+}
+#aventurier {
+	width: 35%;
+	margin: auto;
+	margin-bottom: 16px;
+}
+#bloc_centre, #signalements h3, .liens_billets {
 	text-align: center;
 }
 #billet p, #contenu_billet, #contenuBillet {
@@ -52,21 +68,4 @@ footer {
 .timeCom {
 	position: absolute;
 	right: 0px;
-}
-.enteteBillet, #signalements {
-	text-align: initial;
-}
-#affichages_billets, #signalements {
-	margin-top: 60px;
-}
-#bouton_connexion {
-	margin-top: 10px;
-}
-#img_aventurier {
-	width: 100%;
-}
-#aventurier {
-	width: 35%;
-	margin: auto;
-	margin-bottom: 16px;
 }

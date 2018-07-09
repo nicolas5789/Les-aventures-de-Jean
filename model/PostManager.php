@@ -3,7 +3,19 @@ require_once("model/Database.php");
 
 class PostManager extends Database
 {
-	//obtention des billets
+	//ajout d'un billet (CREATE)
+	public function setPost($titre, $contenu)
+	{
+		$titreSafe = htmlspecialchars($titre);
+		
+		$bdd = $this->bddConnect();
+		$addPost = $bdd->prepare("INSERT INTO billets(titre, date_creation, contenu) VALUES(?, NOW(), ?)");
+		$sendPost = $addPost->execute(array($titreSafe, $contenu));
+
+		return $sendPost; 
+	}
+
+	//obtention des billets (READ)
 	public function getPosts() 
 	{ 
 		$bdd = $this->bddConnect();
@@ -12,18 +24,19 @@ class PostManager extends Database
 		return $posts;
 	}
 
-	//modification d'un billet selon son id
+	//modification d'un billet selon son id (UPDATE)
 	public function changePost($titre, $contenu, $postId)
 	{
-		
+		$titreSafe = htmlspecialchars($titre);
+
 		$bdd = $this->bddConnect();
 		$editPost = $bdd->prepare("UPDATE billets SET titre = ?, contenu = ? WHERE id = ?");
-		$sendPost = $editPost->execute(array($titre, $contenu, $postId));
+		$sendPost = $editPost->execute(array($titreSafe, $contenu, $postId));
 
 		return $sendPost;
 	}
 
-	//suppression d'un billet selon son id
+	//suppression d'un billet selon son id (DELETE)
 	public function deletePost($postId)
 	{
 		$bdd = $this->bddConnect();
@@ -36,7 +49,6 @@ class PostManager extends Database
 	//obtention d'un billet selon son id
 	public function getPost($postId)
 	{
-
 		$bdd = $this->bddConnect();
 		$req = $bdd->prepare("SELECT * FROM billets WHERE id= ?");
 		$req->execute(array($postId));
@@ -45,13 +57,5 @@ class PostManager extends Database
 		return $post;
 	}
 
-	//ajout d'un billet 
-	public function setPost($titre, $contenu)
-	{
-		$bdd = $this->bddConnect();
-		$addPost = $bdd->prepare("INSERT INTO billets(titre, date_creation, contenu) VALUES(?, NOW(), ?)");
-		$sendPost = $addPost->execute(array($titre, $contenu));
-
-		return $sendPost; 
-	}
+	
 }

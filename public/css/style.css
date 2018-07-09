@@ -52,6 +52,9 @@ body {
 #billet p, #contenu_billet, #contenuBillet {
 	text-align: justify;
 }
+.contenuBillet {
+	text-align: initial;
+}
 .contenu_billet {
 	text-align: initial;
 }

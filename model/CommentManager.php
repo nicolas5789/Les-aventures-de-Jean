@@ -3,27 +3,7 @@ require_once("model/Database.php");
 
 class CommentManager extends Database
 {
-	//suppression d'un commentaire selon son id
-	public function deleteCom($commentId)
-	{
-		$bdd = $this->bddConnect();
-		$req_deleteCom = $bdd->prepare("DELETE FROM commentaires WHERE id = ?");
-		$req_deleteCom->execute(array($commentId));
-
-		return $req_deleteCom;
-	}
-
-	//obtention des commentaires
-	public function getComments($postId)
-	{
-		$bdd = $this->bddConnect();
-		$comments = $bdd->prepare("SELECT id, id_billet, auteur, DATE_FORMAT(date_creation, '%d-%m-%Y à %Hh%i') AS date_creation, nb_signalement, contenu FROM commentaires WHERE id_billet = ? ORDER BY date_creation DESC");
-		$comments->execute(array($postId));
-
-		return $comments;
-	}
-
-	//ajout des commentaires
+	//ajout des commentaires (CREATE)
 	public function setComment($postId, $auteur, $contenu)
 	{
 		$postIdSafe = htmlspecialchars($postId); //sécurisation des données envoyées
@@ -36,6 +16,29 @@ class CommentManager extends Database
 
 		return $sendComment; 
 	}
+
+	//obtention des commentaires (READ)
+	public function getComments($postId)
+	{
+		$bdd = $this->bddConnect();
+		$comments = $bdd->prepare("SELECT id, id_billet, auteur, DATE_FORMAT(date_creation, '%d-%m-%Y à %Hh%i') AS date_creation, nb_signalement, contenu FROM commentaires WHERE id_billet = ? ORDER BY date_creation DESC");
+		$comments->execute(array($postId));
+
+		return $comments;
+	}
+
+	//suppression d'un commentaire selon son id (DELETE)
+	public function deleteCom($commentId)
+	{
+		$bdd = $this->bddConnect();
+		$req_deleteCom = $bdd->prepare("DELETE FROM commentaires WHERE id = ?");
+		$req_deleteCom->execute(array($commentId));
+
+		return $req_deleteCom;
+	}
+
+
+	// SIGNALEMENTS //
 
 	//signalement d'un commentaire
 	public function setSignal($id)

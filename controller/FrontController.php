@@ -1,16 +1,5 @@
 <?php
-
-
-//METHODE EN STATIC
-
-
-//appel des model
-//require("model/Post.php");
-require("model/PostManager.php");
-//require("model/comment.php");
-require("model/CommentManager.php");
-require("model/GetPass.php");
-//REMPLACER PAR AUTOLOAD
+require("autoloader.php");
 
 class FrontController
 {

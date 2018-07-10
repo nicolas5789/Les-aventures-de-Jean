@@ -1,4 +1,13 @@
 <?php
+session_cache_limiter('private');
+$cache_limiter = session_cache_limiter();
+
+/* Configure le délai d'expiration à 30 minutes */
+session_cache_expire(1); // 1 minutes pour essai
+$cache_expire = session_cache_expire();
+
+
+
 session_start();
 
 //appel des controleurs
@@ -20,8 +29,9 @@ if (isset($_action))
 	{
 		case "home" :
 		{
-			$frontController = new FrontController(); 
-			$frontController->home();
+			//$frontController = new FrontController(); 
+			//$frontController->home(); A MODIFIER
+			FrontController::home();
 			break;
 		}
 		case "blog" :
@@ -34,7 +44,7 @@ if (isset($_action))
 			if (isset($_id) && $_id > 0) 
 		{
 			$frontController = new FrontController(); 
-			$frontController->post();
+			$frontController->post($_GET["id"]);
 		} else 
 		{
 			echo "Erreur : aucun id de billet transmis";

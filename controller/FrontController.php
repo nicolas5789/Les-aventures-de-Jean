@@ -4,7 +4,7 @@ require("autoloader.php");
 class FrontController
 {
 
-	function home()
+	public static function home() //preciser la porter de toute les fonctions
 	{
 		require("views/front/frontHomeView.php");
 	}
@@ -18,12 +18,12 @@ class FrontController
 		require("views/front/frontBlogView.php"); //lance la page affichant les billets
 	}
 
-	function post() //affiche un post avec ses com
+	function post($id) //affiche un post avec ses com
 	{
 		$postManager = new PostManager();
 		$commentManager = new CommentManager();
 
-		$post = $postManager->getPost($_GET["id"]); //obtient un post précis
+		$post = $postManager->getPost($id); //obtient un post précis
 		$comments = $commentManager->getComments($_GET["id"]); // obtient les com d'un post selon son id
 		
 		require("views/front/frontPostView.php"); //affiche un post avec ses comments

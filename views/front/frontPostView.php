@@ -6,7 +6,8 @@
 <?php ob_start(); ?>
 	<div id = "billet"> 
 		<p>
-			<h3> <?php echo $post["titre"] ?> </h3>
+			<h3> <?php //echo $post["titre"] 
+					echo $post->titre();						?> </h3>
 			<span> Le <?php echo $post["date_creation"] ?> </span>
 		</p>
 		<p> <?php echo ($post["contenu"]) ?></p>

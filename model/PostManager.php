@@ -23,7 +23,7 @@ class PostManager extends Database
 
 		return $posts;
 	}
-
+	
 	//modification d'un billet selon son id (UPDATE)
 	public function changePost($titre, $contenu, $postId)
 	{
@@ -50,7 +50,7 @@ class PostManager extends Database
 	public function getPost($postId)
 	{
 		$bdd = $this->bddConnect();
-		$req = $bdd->prepare("SELECT * FROM billets WHERE id= ?");
+		$req = $bdd->prepare("SELECT id, DATE_FORMAT(date_creation, '%d-%m-%Y à %Hh%i') AS date_creation, contenu, titre FROM billets WHERE id= ?");
 		$req->execute(array($postId));
 		$post = $req->fetch();
 

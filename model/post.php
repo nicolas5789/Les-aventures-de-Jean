@@ -7,6 +7,14 @@ class Post
 	private $_contenu; 
 	private $_titre;
 
+	public function __construct($_id, $_date_creation, $_contenu, $_titre)
+	{
+		$this->setId($_id);
+		$this->setDate_creation($_date_creation);
+		$this->setContenu($_contenu);
+		$this->setTitre($_titre);
+	}
+
 //getters
 
 	public function id()

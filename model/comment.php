@@ -9,6 +9,15 @@ class Comment
 	private $_nb_signalement;
 	private $_contenu; 
 
+	public function __construct($_id, $_id_billet, $_auteur, $_date_creation, $_contenu, $_titre)
+	{
+		$this->setId($_id);
+		$this->setId_billet($_id_billet);
+		$this->setAuteur($_auteur);
+		$this->setDate_creation($_date_creation);
+		$this->setContenu($_contenu);
+		$this->setTitre($_titre);
+	}
 //getters
 
 	public function id()

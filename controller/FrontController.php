@@ -13,8 +13,10 @@ class FrontController
 	{
 		$postManager = new PostManager();
 
-		$posts = $postManager->getPosts(); //permet d'obtenir les billets avec leurs info(posts)
-		
+		//$posts = $postManager->getPosts(); //permet d'obtenir les billets avec leurs info(posts)
+
+		$posts = $postManager->getPosts(); 
+
 		require("views/front/frontBlogView.php"); //lance la page affichant les billets
 	}
 
@@ -22,9 +24,10 @@ class FrontController
 	{
 		$postManager = new PostManager();
 		$commentManager = new CommentManager();
-
+		
 		$post = $postManager->getPost($id); //obtient un post précis
-		$comments = $commentManager->getComments($_GET["id"]); // obtient les com d'un post selon son id
+		
+		$comments = $commentManager->getComments($id); // obtient les com d'un post selon son id
 		
 		require("views/front/frontPostView.php"); //affiche un post avec ses comments
 	}

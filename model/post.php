@@ -1,4 +1,5 @@
 <?php
+require_once "PostManager.php";
 
 class Post 
 {
@@ -7,12 +8,26 @@ class Post
 	private $_contenu; 
 	private $_titre;
 
-	public function __construct($_id, $_date_creation, $_contenu, $_titre)
+	//public function __construct($_id, $_date_creation, $_contenu, $_titre)
+	public function __construct(array $data)
+
 	{
-		$this->setId($_id);
-		$this->setDate_creation($_date_creation);
-		$this->setContenu($_contenu);
-		$this->setTitre($_titre);
+		if (isset($data['id']))
+		{
+			$this->setId($data['id']);	
+		}
+		if (isset($data['date_creation']))
+		{
+			$this->setDate_creation($data['date_creation']);
+		}
+		if (isset($data['contenu']))
+		{
+			$this->setContenu($data['contenu']);	
+		}
+		if (isset($data['titre']))
+		{
+			$this->setTitre($data['titre']);	
+		}
 	}
 
 //getters

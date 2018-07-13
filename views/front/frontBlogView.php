@@ -5,6 +5,23 @@
 
 <?php ob_start(); ?>
 	<?php
+
+	//var_dump($posts);
+
+	while($post = $posts->fetch())
+	{
+
+	//var_dump($post);
+
+	echo $post->id() . "<br>";
+	echo $post->titre() . "<br>";
+	echo $post->date_creation() . "<br>";
+	echo $post->contenu();
+	}
+
+
+
+	/*
 	while($data = $posts->fetch())
 	{
 	?>
@@ -24,6 +41,8 @@
 	<?php
 	}
 	$posts->closeCursor();
+
+	*/
 	?>
 <?php $content = ob_get_clean(); ?>
 

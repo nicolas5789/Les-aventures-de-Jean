@@ -1,13 +1,4 @@
 <?php
-session_cache_limiter('private');
-$cache_limiter = session_cache_limiter();
-
-/* Configure le délai d'expiration à 30 minutes */
-session_cache_expire(1); // 1 minutes pour essai
-$cache_expire = session_cache_expire();
-
-
-
 session_start();
 
 //appel des controleurs

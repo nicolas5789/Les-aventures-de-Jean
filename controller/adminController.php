@@ -55,9 +55,10 @@ abstract class AdminController
 
 	public static function editPost() //obtient billet dans zone de modification
 	{
-		$postManger = new PostManager();
+		$targetPost = new Post(['id'=>$_GET["id"]]);
+		$postManager = new PostManager();
 
-		$post = $postManger->getPost($_GET["id"]);
+		$post = $postManager->getPost($targetPost);
 
 		require("views/admin/adminEditPostView.php"); 
 	}

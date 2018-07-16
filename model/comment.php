@@ -9,14 +9,32 @@ class Comment
 	private $_nb_signalement;
 	private $_contenu; 
 
-	public function __construct($_id, $_id_billet, $_auteur, $_date_creation, $_contenu, $_titre)
+	public function __construct(array $data)
 	{
-		$this->setId($_id);
-		$this->setId_billet($_id_billet);
-		$this->setAuteur($_auteur);
-		$this->setDate_creation($_date_creation);
-		$this->setContenu($_contenu);
-		$this->setTitre($_titre);
+		if (isset($data['id']))
+		{
+			$this->setId($data['id']);	
+		}
+		if (isset($data['id_billet']))
+		{
+			$this->setId_billet($data['id_billet']);
+		}
+		if (isset($data['auteur']))
+		{
+			$this->setAuteur($data['auteur']);	
+		}
+		if (isset($data['date_creation']))
+		{
+			$this->setDate_creation($data['date_creation']);	
+		}
+		if (isset($data['nb_signalement']))
+		{
+			$this->setNb_signalement($data['nb_signalement']);
+		}
+		if (isset($data['contenu']))
+		{
+			$this->setContenu($data['contenu']);
+		}
 	}
 //getters
 
@@ -92,7 +110,7 @@ class Comment
 		}	
 	}
 
-	public function setContenu ($contenu)
+	public function setContenu($contenu)
 	{
 		if (is_string($contenu))
 		{

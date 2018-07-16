@@ -2,6 +2,7 @@
 <?php $title_bloc = "Mon Aventure"; ?>
 <?php $description_bloc = "Venez explorer l'aventure d'une vie ligne après ligne."; ?>
 <?php $lien = "<a class='btn btn-primary btn-lg' href='index.php?action=blog' role='button'>Découvrir &raquo;</a>"; ?>
+<?php $adminStyle ="public"; ?>
 
 <?php ob_start(); ?>
 

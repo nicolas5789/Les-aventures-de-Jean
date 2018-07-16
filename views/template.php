@@ -6,10 +6,10 @@
 	<!-- PENSEZ A INSERER LA META DESCRIPTION SELON LA PAGE -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="public/css/style.css">
-	<title><?php echo $title ?></title>
+	<title><?= $title ?></title>
 </head>
 
-<body>
+<body class="<?= $adminStyle ?>">
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 		<a class="navbar-brand" href="index.php?action=home">Accueil</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,10 +40,10 @@
 	<main role="main">
 		<div class="jumbotron">
 			<div class="container" id="bloc_haut">
-				<h1 class="display-3"> <?php echo $title_bloc ?> </h1>
-				<p> <?php echo $description_bloc ?> </p>
+				<h1 class="display-3"> <?= $title_bloc ?> </h1>
+				<p> <?= $description_bloc ?> </p>
 				<p>
-					<?php echo $lien ?>
+					<?= $lien ?>
 				</p>
 			</div>
 		</div>
@@ -51,7 +51,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div id="contenu">
-						<?php echo $content ?>
+						<?= $content ?>
 					</div>
 				</div>
 			</div>

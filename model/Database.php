@@ -1,6 +1,6 @@
 <?php
 
-class Database //passer en abstract
+class Database 
 {
 	//connexion à la bdd
 	protected function bddConnect()

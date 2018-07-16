@@ -1,5 +1,4 @@
 <?php
-require_once "PostManager.php";
 
 class Post 
 {
@@ -8,7 +7,6 @@ class Post
 	private $_contenu; 
 	private $_titre;
 
-	//public function __construct($_id, $_date_creation, $_contenu, $_titre)
 	public function __construct(array $data)
 
 	{

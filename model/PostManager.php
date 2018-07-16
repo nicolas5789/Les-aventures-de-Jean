@@ -27,15 +27,6 @@ class PostManager extends Database
 	//obtention de tous les billets 
 	public function getPosts() 
 	{ 
-		/*
-
-		$bdd = $this->bddConnect();
-		$posts = $bdd->query("SELECT id, DATE_FORMAT(date_creation, '%d-%m-%Y à %Hh%i') AS date_creation, contenu, titre FROM billets ORDER BY date_creation DESC");
-
-		return $posts;
-		
-		*/
-			
 		$posts = [];
 
 		$bdd = $this->bddConnect();
@@ -44,11 +35,9 @@ class PostManager extends Database
 		while($data = $req->fetch(PDO::FETCH_ASSOC))
 		{
 			$posts[] = new Post($data);
-			
 		}
-		//var_dump($posts);
-		return $posts;
 
+		return $posts;
 	}
 	
 	//modification d'un billet selon son id (UPDATE)

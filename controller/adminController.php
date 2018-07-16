@@ -1,9 +1,9 @@
 <?php
 
-class AdminController 
+abstract class AdminController 
 {
 
-	function deleteCom()
+	public static function deleteCom()
 	{
 		$commentManager = new CommentManager();
 
@@ -12,7 +12,25 @@ class AdminController
 		header("Location: index.php?action=admin");
 	}
 
-	function deletePost() // supprime un billet slon son id de la bdd
+	public static function editCom()
+	{
+		$commentManager = new CommentManager();
+
+		$comment = $commentManager->getComment($_GET["id"]);
+
+		require("views/admin/adminEditCommentView.php");
+	}
+
+	public static function changeCom()
+	{
+		$commentManager = new CommentManager();
+
+		$sendCom = $commentManager->changeComment($_POST["contenu"], $_POST["auteur"], $_GET["id"]);
+
+		header("Location: index.php?action=moderate");
+	}
+
+	public static function deletePost() // supprime un billet slon son id de la bdd
 	{
 		$postManager = new PostManager();
 
@@ -21,7 +39,7 @@ class AdminController
 		header("Location: index.php?action=admin");
 	}
 
-	function changePost() //envoi le billet modifié à la bdd
+	public static function changePost() //envoi le billet modifié à la bdd
 	{
 		$postManager = new PostManager();
 
@@ -30,7 +48,7 @@ class AdminController
 		header("Location: index.php?action=admin");
 	}
 
-	function editPost() //obtient billet dans zone de modification
+	public static function editPost() //obtient billet dans zone de modification
 	{
 		$postManger = new PostManager();
 
@@ -39,7 +57,7 @@ class AdminController
 		require("views/admin/adminEditPostView.php"); 
 	}
 
-	function newPost($titre, $contenu) //permet d'ajouter un billet
+	public static function newPost($titre, $contenu) //permet d'ajouter un billet
 	{
 		$postManager = new PostManager();
 
@@ -48,7 +66,7 @@ class AdminController
 		header("Location: index.php?action=admin");
 	}
 
-	function admin()
+	public static function admin()
 	{
 		$postManager = new PostManager();
 		$commentManager = new CommentManager();
@@ -59,12 +77,21 @@ class AdminController
 		require("views/admin/adminView.php");
 	}	
 
-	function connectForm()
+	public static function moderate()
+	{
+		$commentManager = new CommentManager();
+
+		$reportedComments = $commentManager->getReportedCom();
+
+		require("views/admin/adminModerationView.php");
+	}
+
+	public static function connectForm()
 	{
 		require("views/admin/adminConnexionView.php");
 	}
 
-	function access($pseudo, $pass)
+	public static function access($pseudo, $pass)
 	{
 		$getPass = new GetPass();
 

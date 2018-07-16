@@ -20,52 +20,31 @@ if (isset($_action))
 	{
 		case "home" :
 		{
-			//$frontController = new FrontController(); 
-			//$frontController->home(); A MODIFIER
 			FrontController::home();
 			break;
 		}
+
 		case "blog" :
 		{
-			$frontController = new FrontController(); 
-			$frontController->listPosts();
+			FrontController::listPosts();
 			break;
 		}
+
 		case "post" :
+		{
 			if (isset($_id) && $_id > 0) 
-		{
-			$frontController = new FrontController(); 
-			$frontController->post($_GET["id"]);
-		} else 
-		{
+			{
+				FrontController::post($_GET["id"]);
+			} else 
+			{
 			echo "Erreur : aucun id de billet transmis";
-		}	
+			}
 			break;
+		}
 
 		case "addComment" :
 		{
-			$frontController = new FrontController(); 
-			$frontController->newComments($_id, $_POST["auteur"], $_POST["contenu"]);
-			break;
-		}
-
-		case "admin" :
-		{
-			$adminController = new AdminController();
-			$adminController->admin();
-			break;
-		}
-
-		case "addPost" :
-		{
-			if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
-			{
-				$adminController = new AdminController();
-				$adminController->newPost($_POST["titre"], $_POST["contenu"]);
-			} else 
-			{
-				header("Location: index.php");
-			}	
+			FrontController::newComments($_id, $_POST["auteur"], $_POST["contenu"]);
 			break;
 		}
 
@@ -75,8 +54,7 @@ if (isset($_action))
 			{
 				if (isset($_GET["postId"]) && $_GET["postId"] > 0)
 				{
-					$frontController = new FrontController(); 
-					$frontController->newSignal();
+					FrontController::newSignal();
 				} else 
 				{
 					echo "Aucun id de billet transmis";
@@ -85,11 +63,33 @@ if (isset($_action))
 			break;
 		}
 
+		case "admin" :
+		{
+			AdminController::admin();
+			break;
+		}
+
+		case "moderate" :
+		{
+			AdminController::moderate();
+			break;		
+		}
+
+		case "addPost" :
+		{
+			if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
+			{
+				AdminController::newPost($_POST["titre"], $_POST["contenu"]);
+			} else 
+			{
+				header("Location: index.php");
+			}	
+			break;
+		}
+
 		case "formAccess" :
 		{
-
-			$adminController = new AdminController();
-			$adminController->connectForm();
+			AdminController::connectForm();
 			break;
 		}
 
@@ -97,13 +97,10 @@ if (isset($_action))
 		{
 			if(isset($_POST["pseudo"]) && isset($_POST["pass"]))
 			{ 
-				
-				$adminController = new AdminController();
-				$adminController->access($_POST["pseudo"], $_POST["pass"]);
+				AdminController::access($_POST["pseudo"], $_POST["pass"]);
 			} else 
 			{
-				$adminController = new AdminController();
-				$adminController->connectForm();
+				AdminController::connectForm();
 			}	
 			break;
 		}
@@ -114,8 +111,7 @@ if (isset($_action))
 			{
 				if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 				{
-					$adminController = new AdminController();
-					$adminController->editPost();
+					AdminController::editPost();
 				} else 
 				{
 					header("Location: index.php");
@@ -133,8 +129,7 @@ if (isset($_action))
 			{
 				if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 				{
-					$adminController = new AdminController();
-					$adminController->changePost();
+					AdminController::changePost();
 				} else
 				{
 					header("Location: index.php");
@@ -152,8 +147,7 @@ if (isset($_action))
 			{
 				if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 				{
-					$adminController = new AdminController();
-					$adminController->deletePost();
+					AdminController::deletePost();
 				} else
 				{
 					header("Location: index.php");
@@ -165,14 +159,49 @@ if (isset($_action))
 			break;
 		}
 
+		case "editCom" :
+		{
+			if (isset($_id) && $_id > 0) 
+			{
+				if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
+				{
+					AdminController::editCom();
+				} else 
+				{
+					header("Location: index.php");
+				}
+			} else 
+			{
+				echo "Aucun Id de commentaire transmis";
+			}
+			break;
+		}
+
+		case "changeCom" :
+		{
+			if (isset($_id) && $_id > 0) 
+			{
+				if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
+				{
+					AdminController::changeCom();
+				} else
+				{
+					header("Location: index.php");
+				}
+			} else 
+			{
+				echo "Aucun Id de commentaire transmis";
+			}
+			break;	
+		}
+
 		case "deleteCom" :
 		{
 			if (isset($_id) && $_id > 0) 
 			{
 				if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 				{
-					$adminController = new AdminController();
-					$adminController->deleteCom();
+					AdminController::deleteCom();
 				} else 
 				{
 					header("Location: index.php");
@@ -193,13 +222,11 @@ if (isset($_action))
 
 		default :
 		{
-			$frontController = new FrontController(); 
-			$frontController->home();
+			FrontController::home();
 			break;	
 		}
 	}
 } else
 {
-	$frontController = new FrontController(); 
-	$frontController->home();
+	FrontController::home();
 }

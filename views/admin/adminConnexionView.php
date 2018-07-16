@@ -9,6 +9,7 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 <?php $title_bloc = "Page de connexion"; ?>
 <?php $description_bloc = ""; ?>
 <?php $lien = ""; ?>
+<?php $adminStyle ="admin"; ?>
 
 <?php ob_start(); ?>
 	<div id="connexion_form" align="center">

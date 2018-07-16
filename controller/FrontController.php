@@ -1,38 +1,36 @@
 <?php
-require("autoloader.php");
+require("Autoloader.php");
+Autoloader::register();
 
-class FrontController
+abstract class FrontController
 {
 
-	public static function home() //preciser la porter de toute les fonctions
+	public static function home() 
 	{
 		require("views/front/frontHomeView.php");
 	}
 
-	function listPosts()
+	public static function listPosts()
 	{
 		$postManager = new PostManager();
 
-		//$posts = $postManager->getPosts(); //permet d'obtenir les billets avec leurs info(posts)
-
 		$posts = $postManager->getPosts(); 
 
-		require("views/front/frontBlogView.php"); //lance la page affichant les billets
+		require("views/front/frontBlogView.php"); 
 	}
 
-	function post($id) //affiche un post avec ses com
+	public static function post($id) 
 	{
 		$postManager = new PostManager();
 		$commentManager = new CommentManager();
 		
-		$post = $postManager->getPost($id); //obtient un post précis
+		$post = $postManager->getPost($id); 
+		$comments = $commentManager->getComments($id); 
 		
-		$comments = $commentManager->getComments($id); // obtient les com d'un post selon son id
-		
-		require("views/front/frontPostView.php"); //affiche un post avec ses comments
+		require("views/front/frontPostView.php");
 	}
 
-	function newComments($id_billet, $auteur, $contenu)
+	public static function newComments($id_billet, $auteur, $contenu)
 	{
 		$commentManager = new CommentManager();
 
@@ -41,7 +39,7 @@ class FrontController
 		header("Location: index.php?action=post&id=".$id_billet);
 	}
 
-	function newSignal()
+	public static function newSignal()
 	{
 		$commentManager = new CommentManager();
 

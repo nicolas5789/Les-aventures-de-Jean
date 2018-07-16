@@ -1,6 +1,9 @@
 body {
 	background-color: #f5f5dc80
 }
+.admin {
+	background-color: #2d4b6980;
+}
 .jumbotron {
 	background: url("../images/alaska.jpg");
 	background-position: center;
@@ -17,10 +20,18 @@ body {
 	color: aliceblue;
 	text-shadow: black 0.1em 0.1em 0.2em;
 }
-#labelNewCom, #labelNewPost, .labelEditPost, .textareaEditPost {
+#admin_boutons {
+	display: flex;
+	justify-content: space-around;
+}
+#admin_boutons a {
+	background-color: darkcyan;
+	border-color: darkcyan;
+}
+#labelNewCom, #labelNewPost, .labelEditPost, .textareaEditPost, #labelEditCom {
 	width: 100%;
 }
-#textareaNewCom {
+#textareaNewCom, #textareaEditCom {
 	height: 100px;
 }
 #textareaNewPost {
@@ -34,6 +45,9 @@ body {
 }
 #affichages_billets, #signalements {
 	margin-top: 60px;
+}
+#addPost{
+	margin-top: 30px;
 }
 #bouton_connexion {
 	margin-top: 10px;

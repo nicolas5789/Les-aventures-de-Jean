@@ -1,11 +1,8 @@
 <?php
-if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
-{
-
-} else
-{
+if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok"):
+else:
 	header("Location: index.php");
-}
+endif;
 ?>
 
 <?php $title = "Espace administrateur"; ?>
@@ -49,28 +46,23 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 			<div class="col-md-12">
 				<div id="affichages_billets">
 					<h3>Billets en ligne</h3>
-					<?php
-					foreach ($posts as $post)
-					{
-					?>
-					<div class="billet">
-						<div class="enteteBillet">
-							<p> <strong> <?= htmlspecialchars($post->titre()); ?> </strong>, publié le <?= htmlspecialchars($post->date_creation()); ?> </p>
+					<?php foreach ($posts as $post): ?>
+						<div class="billet">
+							<div class="enteteBillet">
+								<p> <strong> <?= htmlspecialchars($post->titre()); ?> </strong>, publié le <?= htmlspecialchars($post->date_creation()); ?> </p>
+							</div>
+							<div class="contenuBillet">
+								<p> 
+									<?= $post->contenu(); ?>
+									<br/>
+									<a class="badge badge-success" href="index.php?action=post&amp;id=<?= htmlspecialchars($post->id()); ?>">Voir le billet avec ses commentaires</a> 
+									<a class="badge badge-warning" href="index.php?action=editPost&amp;id=<?= htmlspecialchars($post->id()); ?>">Modifier le billet</a>
+									<a class="badge badge-danger" href="index.php?action=deletePost&amp;id=<?= htmlspecialchars($post->id()); ?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce billet ?');">Supprimer le billet</a>
+								</p>
+							</div>
 						</div>
-						<div class="contenuBillet">
-							<p> 
-								<?= $post->contenu(); ?>
-								<br/>
-								<a class="badge badge-success" href="index.php?action=post&amp;id=<?= htmlspecialchars($post->id()); ?>">Voir le billet avec ses commentaires</a> 
-								<a class="badge badge-warning" href="index.php?action=editPost&amp;id=<?= htmlspecialchars($post->id()); ?>">Modifier le billet</a>
-								<a class="badge badge-danger" href="index.php?action=deletePost&amp;id=<?= htmlspecialchars($post->id()); ?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce billet ?');">Supprimer le billet</a>
-							</p>
-						</div>
-					</div>
-					<hr>
-					<?php
-					}
-					?>
+						<hr>
+					<?php endforeach; ?>
 				</div>
 			</div>
 		</div>

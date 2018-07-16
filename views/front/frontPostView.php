@@ -24,10 +24,7 @@
 
 	<div id= "commentaires">
 		<h3>Commentaires</h3>
-		<?php
-		foreach ($comments as $comment)
-		{
-		?>
+		<?php foreach ($comments as $comment): ?>
 			<div class="commentaire">
 				<p>
 					<span> <strong><?= htmlspecialchars($comment->auteur()); ?> </strong></span> <span class="timeCom"> Le <?= htmlspecialchars($comment->date_creation()); ?> </span> <br>
@@ -39,9 +36,7 @@
 				</p>
 				<hr>
 			</div>
-		<?php
-		}
-		?>
+		<?php endforeach; ?>
 	</div>
 
 <?php $content = ob_get_clean(); ?>

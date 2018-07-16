@@ -24,15 +24,14 @@
 				<li class="nav-item">
 					<a class="nav-link" href="index.php?action=blog">Le Blog<span class="sr-only"></span></a> 
 				</li>
-				<?php if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
-				{ ?>
+				<?php if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok"): ?>
 				<li class="nav-item">
 					<a class="nav-link" href="index.php?action=admin">Administration<span class="sr-only"></span></a> 
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="index.php?action=disconnect">Déconnexion</a> 
 				</li>
-				<?php } ?> 
+				<?php endif; ?> 
 			</ul>
 		</div>
 	</nav>

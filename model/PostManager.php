@@ -44,10 +44,11 @@ class PostManager extends Database
 	public function changePost($titre, $contenu, $postId)
 	{
 		$titreSafe = htmlspecialchars($titre);
+		$postIdSafe = htmlspecialchars($postId);
 
 		$bdd = $this->bddConnect();
 		$editPost = $bdd->prepare("UPDATE billets SET titre = ?, contenu = ? WHERE id = ?");
-		$sendPost = $editPost->execute(array($titreSafe, $contenu, $postId));
+		$sendPost = $editPost->execute(array($titreSafe, $contenu, $postIdSafe));
 	}
 
 	//suppression d'un billet selon son id (DELETE)

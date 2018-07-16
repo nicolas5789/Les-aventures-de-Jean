@@ -1,11 +1,8 @@
 <?php
-if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
-{
-
-} else
-{
+if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok"):
+else:
 	header("Location: index.php");
-}
+endif;
 ?>
 
 <?php $title = "Modération de commentaire"; ?>

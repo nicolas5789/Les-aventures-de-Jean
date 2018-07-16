@@ -1,11 +1,8 @@
 <?php
-if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
-{
-
-} else
-{
+if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok"):
+else:
 	header("Location: index.php");
-}
+endif;
 ?>
 
 <?php $title = "Espace de modération"; ?>
@@ -31,33 +28,28 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 			<div class="col-md-12">
 				<div id="signalements">
 					<h3>Signalements</h3>
-					<?php
-					foreach($reportedComments as $reportedCom)
-					{
-					?>
-					<div class="reportedCom">
-						<p>
-							Le commentaire écrit par 
-							<?= htmlspecialchars($reportedCom->auteur()); ?>
-							le 
-							<?= htmlspecialchars($reportedCom->date_creation()); ?>
-							a été signalé
-							<?= htmlspecialchars($reportedCom->nb_signalement()); ?>
-							fois.
-						 </p>
-						 <span>
-						 	Commentaire :
-						 	<?= htmlspecialchars($reportedCom->contenu()); ?>
-						 </span>
-						 <div class="deleteCom">
-						 	<a class="badge badge-warning" href="index.php?action=editCom&amp;id=<?= htmlspecialchars($reportedCom->id()); ?>">Modérer le commentaire</a>
-							<a class="badge badge-danger" href="index.php?action=deleteCom&amp;id=<?= htmlspecialchars($reportedCom->id()); ?> " onclick="return confirm('Etes-vous sûr de vouloir supprimer ce commentaire ?');">Supprimer le commentaire</a>
+					<?php foreach($reportedComments as $reportedCom): ?>
+						<div class="reportedCom">
+							<p>
+								Le commentaire écrit par 
+								<?= htmlspecialchars($reportedCom->auteur()); ?>
+								le 
+								<?= htmlspecialchars($reportedCom->date_creation()); ?>
+								a été signalé
+								<?= htmlspecialchars($reportedCom->nb_signalement()); ?>
+								fois.
+							 </p>
+							 <span>
+							 	Commentaire :
+							 	<?= htmlspecialchars($reportedCom->contenu()); ?>
+							 </span>
+							 <div class="deleteCom">
+							 	<a class="badge badge-warning" href="index.php?action=editCom&amp;id=<?= htmlspecialchars($reportedCom->id()); ?>">Modérer le commentaire</a>
+								<a class="badge badge-danger" href="index.php?action=deleteCom&amp;id=<?= htmlspecialchars($reportedCom->id()); ?> " onclick="return confirm('Etes-vous sûr de vouloir supprimer ce commentaire ?');">Supprimer le commentaire</a>
+							</div>
 						</div>
-					</div>
-					<hr>
-					<?php
-					}
-					?>
+						<hr>
+					<?php endforeach; ?>
 				</div>
 			</div>
 		</div>

@@ -10,20 +10,16 @@ class Post
 	public function __construct(array $data)
 
 	{
-		if (isset($data['id']))
-		{
+		if (isset($data['id'])) {
 			$this->setId($data['id']);	
 		}
-		if (isset($data['date_creation']))
-		{
+		if (isset($data['date_creation'])) {
 			$this->setDate_creation($data['date_creation']);
 		}
-		if (isset($data['contenu']))
-		{
+		if (isset($data['contenu'])) {
 			$this->setContenu($data['contenu']);	
 		}
-		if (isset($data['titre']))
-		{
+		if (isset($data['titre'])) {
 			$this->setTitre($data['titre']);	
 		}
 	}
@@ -55,8 +51,7 @@ class Post
 	public function setId($id)
 	{
 		$id = (int) $id; 
-		if ($id > 0) 
-		{
+		if ($id > 0) {
 			$this->_id = $id; 
 		}
 	}
@@ -68,16 +63,14 @@ class Post
 
 	public function setContenu ($contenu)
 	{
-		if (is_string($contenu))
-		{
+		if (is_string($contenu)) {
 			$this->_contenu = $contenu;
 		}
 	}
 
 	public function setTitre ($titre)
 	{
-		if (is_string($titre))
-		{
+		if (is_string($titre)) {
 			$this->_titre = $titre;
 		}
 	}

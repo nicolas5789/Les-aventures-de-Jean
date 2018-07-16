@@ -5,19 +5,15 @@ session_start();
 require("controller/FrontController.php"); 
 require("controller/AdminController.php");
 
-if(isset($_GET["action"]))
-{
+if(isset($_GET["action"])) {
 	$_action = $_GET["action"];
 }
-if(isset($_GET["id"]))
-{
+if(isset($_GET["id"])) {
 	$_id = $_GET["id"];
 }
 
-if (isset($_action)) 
-{	
-	switch ($_action)
-	{
+if (isset($_action)) {	
+	switch ($_action) {
 		case "home" :
 		{
 			FrontController::home();
@@ -32,11 +28,9 @@ if (isset($_action))
 
 		case "post" :
 		{
-			if (isset($_id) && $_id > 0) 
-			{
+			if (isset($_id) && $_id > 0) {
 				FrontController::post($_GET["id"]);
-			} else 
-			{
+			} else {
 			echo "Erreur : aucun id de billet transmis";
 			}
 			break;
@@ -52,11 +46,9 @@ if (isset($_action))
 		{
 			if(isset($_id)&& $_id > 0)
 			{
-				if (isset($_GET["postId"]) && $_GET["postId"] > 0)
-				{
+				if (isset($_GET["postId"]) && $_GET["postId"] > 0) {
 					FrontController::newSignal();
-				} else 
-				{
+				} else {
 					echo "Aucun id de billet transmis";
 				}
 			}	
@@ -77,11 +69,9 @@ if (isset($_action))
 
 		case "addPost" :
 		{
-			if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
-			{
+			if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok") {
 				AdminController::newPost($_POST["titre"], $_POST["contenu"]);
-			} else 
-			{
+			} else {
 				header("Location: index.php");
 			}	
 			break;
@@ -95,11 +85,9 @@ if (isset($_action))
 
 		case "checkId" :
 		{
-			if(isset($_POST["pseudo"]) && isset($_POST["pass"]))
-			{ 
+			if(isset($_POST["pseudo"]) && isset($_POST["pass"])) { 
 				AdminController::access($_POST["pseudo"], $_POST["pass"]);
-			} else 
-			{
+			} else {
 				AdminController::connectForm();
 			}	
 			break;
@@ -109,15 +97,12 @@ if (isset($_action))
 		{
 			if (isset($_id) && $_id > 0) 
 			{
-				if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
-				{
+				if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok") {
 					AdminController::editPost();
-				} else 
-				{
+				} else {
 					header("Location: index.php");
 				}
-			} else 
-			{
+			} else {
 				echo "Aucun Id de billet transmis";
 			}	
 			break;
@@ -130,12 +115,10 @@ if (isset($_action))
 				if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 				{
 					AdminController::changePost();
-				} else
-				{
+				} else {
 					header("Location: index.php");
 				}
-			} else 
-			{
+			} else {
 				echo "Aucun Id de billet transmis";
 			}
 			break;
@@ -145,15 +128,12 @@ if (isset($_action))
 		{
 			if (isset($_id) && $_id > 0) 
 			{
-				if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
-				{
+				if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok") {
 					AdminController::deletePost();
-				} else
-				{
+				} else {
 					header("Location: index.php");
 				}
-			} else 
-			{
+			} else {
 				echo "Aucun Id de billet transmis";
 			}	
 			break;
@@ -163,15 +143,12 @@ if (isset($_action))
 		{
 			if (isset($_id) && $_id > 0) 
 			{
-				if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
-				{
+				if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok") {
 					AdminController::editCom();
-				} else 
-				{
+				} else {
 					header("Location: index.php");
 				}
-			} else 
-			{
+			} else {
 				echo "Aucun Id de commentaire transmis";
 			}
 			break;
@@ -184,12 +161,10 @@ if (isset($_action))
 				if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 				{
 					AdminController::changeCom();
-				} else
-				{
+				} else {
 					header("Location: index.php");
 				}
-			} else 
-			{
+			} else {
 				echo "Aucun Id de commentaire transmis";
 			}
 			break;	
@@ -197,17 +172,13 @@ if (isset($_action))
 
 		case "deleteCom" :
 		{
-			if (isset($_id) && $_id > 0) 
-			{
-				if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
-				{
+			if (isset($_id) && $_id > 0) {
+				if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok") {
 					AdminController::deleteCom();
-				} else 
-				{
+				} else {
 					header("Location: index.php");
 				}
-			} else 
-			{
+			} else {
 				echo "Aucun Id de commentaire transmis";
 			}
 			break;
@@ -226,7 +197,6 @@ if (isset($_action))
 			break;	
 		}
 	}
-} else
-{
+} else {
 	FrontController::home();
 }

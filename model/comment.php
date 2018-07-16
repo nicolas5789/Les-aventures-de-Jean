@@ -11,28 +11,22 @@ class Comment
 
 	public function __construct(array $data)
 	{
-		if (isset($data['id']))
-		{
+		if (isset($data['id'])) {
 			$this->setId($data['id']);	
 		}
-		if (isset($data['id_billet']))
-		{
+		if (isset($data['id_billet'])) {
 			$this->setId_billet($data['id_billet']);
 		}
-		if (isset($data['auteur']))
-		{
+		if (isset($data['auteur'])) {
 			$this->setAuteur($data['auteur']);	
 		}
-		if (isset($data['date_creation']))
-		{
+		if (isset($data['date_creation'])) {
 			$this->setDate_creation($data['date_creation']);	
 		}
-		if (isset($data['nb_signalement']))
-		{
+		if (isset($data['nb_signalement'])) {
 			$this->setNb_signalement($data['nb_signalement']);
 		}
-		if (isset($data['contenu']))
-		{
+		if (isset($data['contenu'])) {
 			$this->setContenu($data['contenu']);
 		}
 	}
@@ -73,8 +67,7 @@ class Comment
 	public function setId($id)
 	{
 		$id = (int) $id; // conversion en entier si ce n'est pas déjà le cas
-		if ($id > 0) 
-		{
+		if ($id > 0) {
 			$this->_id = $id; //la valeur est assigné à l'attribut correspondant
 		}
 	}
@@ -82,16 +75,14 @@ class Comment
 	public function setId_billet($id_billet)
 	{
 		$id_billet = (int) $id_billet; 
-		if ($id_billet > 0) 
-		{
+		if ($id_billet > 0) {
 			$this->_id_billet = $id_billet; 
 		}	
 	}
 
 	public function setAuteur($auteur)
 	{
-		if (is_string($auteur)) //si la valeur est une chaine de caractères
-		{
+		if (is_string($auteur)) { //si la valeur est une chaine de caractères
 			$this->_auteur = $auteur;
 		}
 	}
@@ -104,16 +95,14 @@ class Comment
 	public function setNb_signalement($nb_signalement)
 	{
 		$nb_signalement = (int) $nb_signalement; 
-		if ($nb_signalement > 0) 
-		{
+		if ($nb_signalement > 0) {
 			$this->_nb_signalement = $nb_signalement; 
 		}	
 	}
 
 	public function setContenu($contenu)
 	{
-		if (is_string($contenu))
-		{
+		if (is_string($contenu)) {
 			$this->_contenu = $contenu;
 		}
 	}

@@ -13,8 +13,6 @@ class CommentManager extends Database
 		$bdd = $this->bddConnect();
 		$addComment = $bdd->prepare("INSERT INTO commentaires(id_billet, auteur, date_creation, contenu) VALUES(?, ?, NOW(), ?)");
 		$sendComment = $addComment->execute(array($postIdSafe, $auteurSafe, $contenuSafe));
-
-		//return $sendComment; 
 	}
 
 	//obtention des commentaires (READ)
@@ -43,15 +41,18 @@ class CommentManager extends Database
 		$comment = $req->fetch(PDO::FETCH_ASSOC);
 
 		return new Comment($comment);
-
 	}
 
 	//modification d'un commentaire (UPDATE)
 	public function changeComment($contenu, $auteur, $commentId)
 	{
+		$contenuSafe = htmlspecialchars($contenu);
+		$auteurSafe = htmlspecialchars($auteur);
+		$commentIdSafe = htmlspecialchars($commentId);
+
 		$bdd = $this->bddConnect();
 		$req = $bdd->prepare("UPDATE commentaires SET contenu = ?, auteur = ?,  nb_signalement = 0 WHERE id = ? ");
-		$req->execute(array($contenu, $auteur, $commentId));
+		$req->execute(array($contenuSafe, $auteurSafe, $commentIdSafe));
 	}
 
 	//suppression d'un commentaire selon son id (DELETE)
@@ -60,10 +61,7 @@ class CommentManager extends Database
 		$bdd = $this->bddConnect();
 		$req_deleteCom = $bdd->prepare("DELETE FROM commentaires WHERE id = ?");
 		$req_deleteCom->execute(array($commentId));
-
-		//return $req_deleteCom;
 	}
-
 
 	// SIGNALEMENTS //
 
@@ -83,8 +81,7 @@ class CommentManager extends Database
 		$req = $bdd->query("SELECT id, id_billet, auteur, DATE_FORMAT(date_creation, '%d-%m-%Y à %Hh%i') AS date_creation, nb_signalement, contenu FROM commentaires WHERE nb_signalement > 0 ORDER BY nb_signalement DESC");
 		$req->execute(array());
 
-		while($data = $req->fetch(PDO::FETCH_ASSOC))
-		{
+		while($data = $req->fetch(PDO::FETCH_ASSOC)) {
 			$reportedComments[] = new Comment($data);
 		}
 

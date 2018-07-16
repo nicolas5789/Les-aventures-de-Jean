@@ -1,8 +1,7 @@
 <?php
-if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
-{
+if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok"):
 	header("Location: index.php?action=admin");
-}
+endif;
 ?>
 
 <?php $title = "Connexion"; ?>
@@ -29,10 +28,9 @@ if(isset($_SESSION["access"]) && $_SESSION["access"] == "ok")
 				<input id="bouton_connexion" type="submit" value="Je m'identifie" name="formConnexion" />
 			</form>
 			<p>
-				<?php if(isset($_SESSION["erreur"])) 
-				{
+				<?php if(isset($_SESSION["erreur"])): 
 					echo $_SESSION["erreur"];
-				}
+				endif;
 				?>	
 			</p>
 		</div>

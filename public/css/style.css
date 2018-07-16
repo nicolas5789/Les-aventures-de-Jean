@@ -1,8 +1,8 @@
 body {
-	background-color: #f5f5dc80
+	background-color: rgba(245,245,220,0.5);
 }
 .admin {
-	background-color: #2d4b6980;
+	background-color: rgba(45,75,105,0.5);
 }
 .jumbotron {
 	background: url("../images/alaska.jpg");
@@ -65,6 +65,9 @@ body {
 }
 #billet p, #contenu_billet, #contenuBillet {
 	text-align: justify;
+}
+.liens_billets a {
+	margin-top: 25px;
 }
 .contenuBillet {
 	text-align: initial;

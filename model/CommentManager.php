@@ -4,11 +4,11 @@ require_once("model/Database.php");
 class CommentManager extends Database
 {
 	//ajout des commentaires (CREATE)
-	public function setComment($postId, $auteur, $contenu)
+	public function setComment($comment)
 	{
-		$postIdSafe = htmlspecialchars($postId); //sécurisation des données envoyées
-		$auteurSafe = htmlspecialchars($auteur);
-		$contenuSafe = htmlspecialchars($contenu);
+		$postIdSafe = htmlspecialchars($comment->id_billet()); 
+		$auteurSafe = htmlspecialchars($comment->auteur());
+		$contenuSafe = htmlspecialchars($comment->contenu());
 
 		$bdd = $this->bddConnect();
 		$addComment = $bdd->prepare("INSERT INTO commentaires(id_billet, auteur, date_creation, contenu) VALUES(?, ?, NOW(), ?)");
@@ -16,13 +16,13 @@ class CommentManager extends Database
 	}
 
 	//obtention des commentaires (READ)
-	public function getComments($postId)
+	public function getComments($targerPost)
 	{
 		$comments = [];
 
 		$bdd = $this->bddConnect();
 		$req = $bdd->prepare("SELECT id, id_billet, auteur, DATE_FORMAT(date_creation, '%d-%m-%Y à %Hh%i') AS date_creation, nb_signalement, contenu FROM commentaires WHERE id_billet = ? ORDER BY date_creation DESC");
-		$req->execute(array($postId));
+		$req->execute(array($targerPost->id()));
 
 		while($data = $req->fetch(PDO::FETCH_ASSOC))
 		{
@@ -33,22 +33,22 @@ class CommentManager extends Database
 	}
 
 	//obtention d'un commentaire
-	public function getComment($commentId)
+	public function getComment($comment)
 	{
 		$bdd = $this->bddConnect();
 		$req = $bdd->prepare("SELECT * FROM commentaires WHERE id = ?");
-		$req->execute(array($commentId));
+		$req->execute(array($comment->id()));
 		$comment = $req->fetch(PDO::FETCH_ASSOC);
 
 		return new Comment($comment);
 	}
 
 	//modification d'un commentaire (UPDATE)
-	public function changeComment($contenu, $auteur, $commentId)
+	public function changeComment($comment)
 	{
-		$contenuSafe = htmlspecialchars($contenu);
-		$auteurSafe = htmlspecialchars($auteur);
-		$commentIdSafe = htmlspecialchars($commentId);
+		$contenuSafe = htmlspecialchars($comment->contenu());
+		$auteurSafe = htmlspecialchars($comment->auteur());
+		$commentIdSafe = htmlspecialchars($comment->id());
 
 		$bdd = $this->bddConnect();
 		$req = $bdd->prepare("UPDATE commentaires SET contenu = ?, auteur = ?,  nb_signalement = 0 WHERE id = ? ");
@@ -56,18 +56,20 @@ class CommentManager extends Database
 	}
 
 	//suppression d'un commentaire selon son id (DELETE)
-	public function deleteCom($commentId)
+	public function deleteCom($comment)
 	{
 		$bdd = $this->bddConnect();
 		$req_deleteCom = $bdd->prepare("DELETE FROM commentaires WHERE id = ?");
-		$req_deleteCom->execute(array($commentId));
+		$req_deleteCom->execute(array($comment->id()));
 	}
 
 	// SIGNALEMENTS //
 
 	//signalement d'un commentaire
-	public function setSignal($id)
+	public function setSignal($comment)
 	{
+		$id = htmlspecialchars($comment->id());
+
 		$bdd = $this->bddConnect();
 		$addSignal = $bdd->query("UPDATE commentaires SET nb_signalement = nb_signalement+1 WHERE id = $id");
 	}

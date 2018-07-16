@@ -5,45 +5,50 @@ abstract class AdminController
 
 	public static function deleteCom()
 	{
+		$comment = new Comment(['id'=>$_GET["id"]]);
 		$commentManager = new CommentManager();
 
-		$req_deleteCom = $commentManager->deleteCom($_GET["id"]);
+		$req_deleteCom = $commentManager->deleteCom($comment);
 
 		header("Location: index.php?action=admin");
 	}
 
 	public static function editCom()
 	{
+		$comment = new Comment(['id'=>$_GET["id"]]);
 		$commentManager = new CommentManager();
 
-		$comment = $commentManager->getComment($_GET["id"]);
+		$comment = $commentManager->getComment($comment);
 
 		require("views/admin/adminEditCommentView.php");
 	}
 
 	public static function changeCom()
 	{
+		$comment = new Comment(['contenu'=>$_POST["contenu"], 'auteur'=>$_POST["auteur"], 'id'=>$_GET["id"]]);
 		$commentManager = new CommentManager();
 
-		$sendCom = $commentManager->changeComment($_POST["contenu"], $_POST["auteur"], $_GET["id"]);
+		$sendCom = $commentManager->changeComment($comment);
 
 		header("Location: index.php?action=moderate");
 	}
 
 	public static function deletePost() // supprime un billet slon son id de la bdd
 	{
+		$post = new Post(['id'=>$_GET["id"]]);
 		$postManager = new PostManager();
 
-		$req_deletePost = $postManager->deletePost($_GET["id"]);
+		$req_deletePost = $postManager->deletePost($post);
 
 		header("Location: index.php?action=admin");
 	}
 
 	public static function changePost() //envoi le billet modifié à la bdd
 	{
+		$post = new Post(['titre'=>$_POST["titre"], 'contenu'=>$_POST["contenu"], 'id'=>$_GET["id"]]);
 		$postManager = new PostManager();
 
-		$sendPost = $postManager->changePost($_POST["titre"], $_POST["contenu"], $_GET["id"]);
+		$sendPost = $postManager->changePost($post);
 
 		header("Location: index.php?action=admin");
 	}
@@ -59,9 +64,10 @@ abstract class AdminController
 
 	public static function newPost($titre, $contenu) //permet d'ajouter un billet
 	{
+		$post = new Post(['titre'=>$titre, 'contenu'=>$contenu]); // création objet
 		$postManager = new PostManager();
 
-		$sendPost = $postManager->setPost($titre, $contenu);
+		$sendPost = $postManager->setPost($post); 
 
 		header("Location: index.php?action=admin");
 	}

@@ -3,7 +3,17 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<!-- PENSEZ A INSERER LA META DESCRIPTION SELON LA PAGE -->
+	<meta name="description" content="Blog de Jean Forteroche, billets de son roman, récits d'aventures, billet simple pour l'alaska"/>
+	<meta name="keywords" content="Blog, Jean Forteroche, aventure, roman, billet simple pour l'alaska"/>
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:url" content="http://lesaventuresdejean.sailtheweb.com/"/>
+	<meta name="site" content="@lesaventuresdejean.sailtheweb.com"/>
+	<meta property="og:title" content="Blog de Jean Forteroche"/>
+	<meta property="og:description" content="Blog de Jean Forteroche, billet simple pour l'alaska"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:image" content="http://lesaventuresdejean.sailtheweb.com/public/images/aventurier.jpg"/>
+	<meta property="og:url" content="lesaventuresdejean.sailtheweb.com"/>
+	<link rel="icon" type="image/png" href="public/images/favicon.png" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="public/css/style.css">
 	<title><?= $title ?></title>

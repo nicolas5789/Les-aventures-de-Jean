@@ -12,7 +12,7 @@
 		Soyez les bienvenus sur mon Blog, je suis Jean Forteroche, écrivain-globetrotter, à travers mes différents romans j'essaie de transmettre mon amour de cette planète bleue. Une petite sphère perdue au milieu de l'univers, qui réserve à chacun de ses habitants une quantité infinie d'aventures et de surprises. Ne reste plus qu'à se laisser tenter.  
 	</p>
 	<div id="aventurier">
-		<img id="img_aventurier" src="public/images/aventurier.jpg">
+		<img id="img_aventurier" src="public/images/aventurier.jpg" alt="Dessin, portait de Jean Forteroche">
 	</div>
 	<p>
 		Une aventure ne s'écrit pas, elle se vit. Et pourtant c'est à travers ce nouveau roman "Billet simple pour l'Alaska" que je vous propose de découvrir une aventure hors du commun, une aventure qui me mena jusqu'au bout du monde.

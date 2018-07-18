@@ -8,7 +8,6 @@ class Post
 	private $_titre;
 
 	public function __construct(array $data)
-
 	{
 		if (isset($data['id'])) {
 			$this->setId($data['id']);	

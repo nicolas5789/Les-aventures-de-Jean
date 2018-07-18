@@ -98,18 +98,30 @@ abstract class AdminController
 		require("views/admin/adminConnexionView.php");
 	}
 
+	//public static function access($pseudo, $pass)
 	public static function access($pseudo, $pass)
 	{
-		$getPass = new GetPass();
+		$userToCheck = new User(['pseudo'=>$pseudo, 'pass'=>$pass]);
+		$userManager = new UserManager();
 
-		$passwordBddPseudo = $getPass->getPassword($pseudo);
+		$user = $userManager->getUser($userToCheck);
 
-		if(password_verify($pass, $passwordBddPseudo)) {
-			$_SESSION["access"] = "ok";
-			header("Location: index.php?action=admin");
+		$passToCheck = $userToCheck->pass();
+		
+		if(isset($user)) {
+
+			$passOnFile = $user->pass();
+
+			if(password_verify($passToCheck, $passOnFile)) {
+				$_SESSION["access"] = "ok";
+				header("Location: index.php?action=admin");
+			} else {
+				$_SESSION["erreur"] = "Pseudo ou mot de passe incorrect";
+				header("Location: index.php?action=checkId"); 
+			}	
 		} else {
 			$_SESSION["erreur"] = "Pseudo ou mot de passe incorrect";
-			header("Location: index.php?action=checkId"); //renvoi vers index mais sans paramètre 
+			header("Location: index.php?action=checkId"); 
 		}	
 	}
 }

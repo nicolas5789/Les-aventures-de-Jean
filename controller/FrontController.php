@@ -5,12 +5,12 @@ Autoloader::register();
 abstract class FrontController
 {
 
-	public static function home() 
+	public static function home() //ouvre la page d'accueil 
 	{
 		require("views/front/frontHomeView.php");
 	}
 
-	public static function listPosts()
+	public static function listPosts() //affiche le blog
 	{
 		$postManager = new PostManager();
 
@@ -19,7 +19,7 @@ abstract class FrontController
 		require("views/front/frontBlogView.php"); 
 	}
 
-	public static function post($id) 
+	public static function post($id) //affiche un billet avec ses commentaires 
 	{
 		$targetPost = new Post(['id'=>$id]);
 		$postManager = new PostManager();
@@ -31,7 +31,7 @@ abstract class FrontController
 		require("views/front/frontPostView.php");
 	}
 
-	public static function newComments($id_billet, $auteur, $contenu)
+	public static function newComments($id_billet, $auteur, $contenu) // ajoute un commentaire
 	{
 		$comment = new Comment(['id_billet'=>$id_billet, 'auteur'=>$auteur, 'contenu'=>$contenu]);
 		$commentManager = new CommentManager();
@@ -40,7 +40,7 @@ abstract class FrontController
 		header("Location: index.php?action=post&id=".$comment->id_billet());
 	}
 
-	public static function newSignal()
+	public static function newSignal() // ajoute un signalement
 	{
 		$comment = new Comment(['id'=>$_GET["id"]]);
 		$commentManager = new CommentManager();

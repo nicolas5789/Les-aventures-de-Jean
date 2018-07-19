@@ -3,7 +3,7 @@
 abstract class AdminController 
 {
 
-	public static function deleteCom()
+	public static function deleteCom() //suppression d'un commentaire
 	{
 		$comment = new Comment(['id'=>$_GET["id"]]);
 		$commentManager = new CommentManager();
@@ -13,7 +13,7 @@ abstract class AdminController
 		header("Location: index.php?action=admin");
 	}
 
-	public static function editCom()
+	public static function editCom() //edition d'un commentaire
 	{
 		$comment = new Comment(['id'=>$_GET["id"]]);
 		$commentManager = new CommentManager();
@@ -23,7 +23,7 @@ abstract class AdminController
 		require("views/admin/adminEditCommentView.php");
 	}
 
-	public static function changeCom()
+	public static function changeCom() //modification d'un commentaire
 	{
 		$comment = new Comment(['contenu'=>$_POST["contenu"], 'auteur'=>$_POST["auteur"], 'id'=>$_GET["id"]]);
 		$commentManager = new CommentManager();
@@ -65,7 +65,7 @@ abstract class AdminController
 
 	public static function newPost($titre, $contenu) //permet d'ajouter un billet
 	{
-		$post = new Post(['titre'=>$titre, 'contenu'=>$contenu]); // création objet
+		$post = new Post(['titre'=>$titre, 'contenu'=>$contenu]); 
 		$postManager = new PostManager();
 
 		$sendPost = $postManager->setPost($post); 
@@ -73,18 +73,16 @@ abstract class AdminController
 		header("Location: index.php?action=admin");
 	}
 
-	public static function admin()
+	public static function admin() //ouvre la page de gestion des billets
 	{
 		$postManager = new PostManager();
-		$commentManager = new CommentManager();
 
 		$posts = $postManager->getPosts(); //permet d'obtenir les billets(posts)
-		$reportedComments = $commentManager->getReportedCom(); //permet d'obtenir les com signalés
-
+		
 		require("views/admin/adminView.php");
 	}	
 
-	public static function moderate()
+	public static function moderate() //ouvre la page de modération des commentaires
 	{
 		$commentManager = new CommentManager();
 
@@ -93,24 +91,21 @@ abstract class AdminController
 		require("views/admin/adminModerationView.php");
 	}
 
-	public static function connectForm()
+	public static function connectForm() //donne accès au formulaire de connexion
 	{
 		require("views/admin/adminConnexionView.php");
 	}
 
-	//public static function access($pseudo, $pass)
-	public static function access($pseudo, $pass)
+	public static function access($pseudo, $pass) //vérifie pseudo et password
 	{
 		$userToCheck = new User(['pseudo'=>$pseudo, 'pass'=>$pass]);
 		$userManager = new UserManager();
 
-		$user = $userManager->getUser($userToCheck);
+		$userOnFile = $userManager->getUser($userToCheck);
+		$passToCheck = $userToCheck->pass(); //password tapé
 
-		$passToCheck = $userToCheck->pass();
-		
-		if(isset($user)) {
-
-			$passOnFile = $user->pass();
+		if(isset($userOnFile)) {
+			$passOnFile = $userOnFile->pass(); //password dans la bdd
 
 			if(password_verify($passToCheck, $passOnFile)) {
 				$_SESSION["access"] = "ok";
